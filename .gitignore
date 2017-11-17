@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# emacs temp files
+*.*~
+.dir-locals.el
