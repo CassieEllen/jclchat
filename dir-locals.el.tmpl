@@ -1,0 +1,21 @@
+((nil . ((tab-width . 8)
+	 (indent-tabs-mode . t))
+      )
+ (c++-mode . ((c-basic-offset . 4)
+	      (tab-width . 8)
+	      (indent-tabs-mode . nil)
+	      (compile-command . "make -C {{{builddir}}}"))
+	   )
+ (c-mode . ((c-basic-offset . 4)
+	    (tab-width . 8)
+	    (indent-tabs-mode . nil)
+	      (compile-command . "make -C {{{builddir}}}"))
+	 )
+ (cmake-mode . (
+	      (compile-command . "make -C {{{builddir}}}"))
+	    )
+	 )
+
+)
+
+(file-name-directory load-file-name)
