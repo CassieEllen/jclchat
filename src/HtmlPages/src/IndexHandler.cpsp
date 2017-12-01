@@ -1,5 +1,4 @@
-<%@ page class="IndexHandler" namespace="jcl" baseClass="JclPageRequestHandler" context="jcl::Model&"
-%>
+<%@ page class="IndexHandler" namespace="jcl" baseClass="JclPageRequestHandler"%>
 <%!
     
     #include <boost/lexical_cast.hpp>
