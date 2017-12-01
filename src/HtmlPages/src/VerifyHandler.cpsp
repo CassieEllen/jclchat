@@ -1,0 +1,71 @@
+<%@ page class="VerifyHandler" namespace="jcl" baseClass="JclPageRequestHandler"%>
+<%!
+    
+    #include <boost/lexical_cast.hpp>
+    
+    #include <iostream>
+    #include <sstream>
+
+    using Poco::Net::NameValueCollection;
+    using Poco::Net::HTTPCookie;
+
+    using namespace std;
+    
+%>
+<%!!
+    #include "HtmlPages/JclPageRequestHandler.h"
+%>
+<%%
+    bool invalid_user = false;
+    string error_message {};
+
+    checkCookies(request, response);
+    
+    NameValueCollection cookies;
+    
+    request.getCookies( cookies );
+    if( ! cookies.has("try") ) {
+        response.addCookie( HTTPCookie("try", "1") );
+    } else {
+        long count = boost::lexical_cast<long>(cookies.get("try"));
+	++ count;
+	cout << "count: " << count << endl;
+	invalid_user = count > 2;
+	//vector<HTTPCookie> cookiesOut
+	//response.getCookies(cookiesOut);
+	//cookies.setCookie( HTTPCookie("try", boost::lexical_cast<std::string>(count)) );
+
+	if( count > 2 ) {
+    	    error_message = "Invalid credentials.";
+        }
+    }
+%>
+<%
+    // Code Here
+
+%>
+<html>
+<head>
+<title>Home</title>
+</head>
+<body>
+<h1>Home</h1>
+
+<%@ include file="Header.cpsp" %>
+
+<p>You have been emailed a verification code. Please type it into the box below
+and click the Verify button.</p>
+
+<form action="/welcome" method="post" enctype="text/plain">
+<table>
+<tr><td>VerifyCode: </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
+<tr><td>          </td><td><input type="submit" name="verify" value="Verify"></td></tr>
+</table>
+</form>
+
+<%= error_message %>
+
+<%@ include file="Footer.cpsp" %>
+
+</body>
+</html>

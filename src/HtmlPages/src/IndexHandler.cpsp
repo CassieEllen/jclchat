@@ -1,0 +1,67 @@
+<%@ page class="IndexHandler" namespace="jcl" baseClass="JclPageRequestHandler" context="jcl::Model&"
+%>
+<%!
+    
+    #include <boost/lexical_cast.hpp>
+    
+    #include <iostream>
+    #include <sstream>
+    
+    #include <Poco/Util/LayeredConfiguration.h>
+
+    //using Poco::Net::NameValueCollection;
+    using Poco::Net::HTTPCookie;
+    using namespace std;
+    
+%>
+<%!!
+    #include "HtmlPages/JclPageRequestHandler.h"
+    #include <Poco/Util/LayeredConfiguration.h>
+%>
+<%%
+    //string sessionId = createSession(request, response);
+    HTTPCookie sessionCookie {"session"};
+    sessionCookie.setMaxAge(0);
+    response.addCookie(sessionCookie);
+
+    HTTPCookie countCookie {"try"};
+    countCookie.setMaxAge(0);
+    response.addCookie(countCookie);
+
+    checkCookies(request, response);
+
+    bool invalid_user = false;
+    string error_message {};
+
+%>
+<%
+    // Code Here
+
+%>
+<html>
+<head>
+<title>Home</title>
+</head>
+<body>
+<h1>Home</h1>
+
+<%@ include file="Header.cpsp" %>
+
+<form action="/welcome" method="post" enctype="text/plain">
+<table>
+<tr><td>Email:    </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
+<tr><td>Password: </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
+<tr><td>          </td><td><input type="submit" name="login" value="Login"></td></tr>
+</table>
+</form>
+
+<%= error_message %>
+<% if(invalid_user) {
+       responseStream << R"msg(<p><a href="/register">Register</a> if you do not have an account.</p>)msg";
+   }
+%>
+
+<%@ include file="Footer.cpsp" %>
+
+</body>
+</html>

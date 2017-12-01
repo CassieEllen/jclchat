@@ -1,0 +1,7 @@
+
+<hr>
+<p>Footer Stuff</p>
+<p><%= dt_ %></p>
+
+<p>Cookies</p>
+<p><%= cookieList_ %></p>

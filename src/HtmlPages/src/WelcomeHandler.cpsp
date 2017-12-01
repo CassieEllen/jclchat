@@ -1,0 +1,43 @@
+<%@ page class="WelcomeHandler" namespace="jcl" baseClass="JclPageRequestHandler"
+         precondition="checkCredentials(request, response)"
+%>
+<%!
+    // Includes here
+    #include <iostream>
+    using std::cout;
+    using std::endl;
+%>
+<%!!
+    #include "HtmlPages/JclPageRequestHandler.h"
+%>
+<%%
+    if( ! loggedIn() ) {
+    	cout << "not logged in" << endl;
+        return response.redirect("/");
+    }
+%>
+<%
+    // Code here
+%>
+<html>
+<head>
+<title>Welcome to out Site</title>
+</head>
+<body>
+<h1>Welcome to our Site</h1>
+
+<%@ include file="Header.cpsp" %>
+
+<!--
+<form action="/Login" method="post" enctype="text/plain">
+<table>
+<tr><td>Username: </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
+<tr><td>Password: </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
+<tr><td>          </td><td><input type="submit" name="login" value="Login"></td></tr>
+</form>
+-->
+
+<%@ include file="Footer.cpsp" %>
+
+</body>
+</html>

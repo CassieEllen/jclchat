@@ -1,0 +1,49 @@
+<%@ page class="RegisterHandler" namespace="jcl" baseClass="JclPageRequestHandler" %>
+<%!
+    #include "Poco/DateTime.h"
+    #include "Poco/DateTimeFormatter.h"
+    #include "Poco/DateTimeFormat.h"
+
+
+    using Poco::DateTime;
+    using Poco::DateTimeFormatter;
+    using Poco::DateTimeFormat;
+%>
+<%!!
+    #include "HtmlPages/JclPageRequestHandler.h"
+%>
+<%
+    DateTime now;
+    std::string dt(DateTimeFormatter::format(now, DateTimeFormat::SORTABLE_FORMAT));
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+</head>
+<body>
+<h1>Register</h1>
+
+<%@ include file="Header.cpsp" %>
+
+<form action="/verify" method="post" enctype="text/plain">
+<table>
+<tr><td>Email:    </td><td><input type="text" name="email1" size="16" maxlength="32"></td></tr>
+<tr><td>Again     </td><td><input type="text" name="email2" size="16" maxlength="32"></td></tr>
+<tr><td>Password: </td><td><input type="text" name="password1" size="16" maxlength="32"></td></tr>
+<tr><td>Again     </td><td><input type="text" name="password2" size="16" maxlength="32"></td></tr>
+<tr><td>Name      </td><td><input type="text" name="name"  size="32" maxlength="64"></td></tr>
+<tr><td>Handle    </td><td><input type="text" name="handle"  size="16" maxlength="32"></td></tr>
+<tr><td>          </td><td><input name="Register" type="submit" value="Register"></td></tr>
+</table>
+</form>
+<!--
+<p>Do we need to add a birth date?</p>
+<p>Does the birth date need to be optional?</p>
+-->
+<p><%= dt %></p>
+
+<%@ include file="Footer.cpsp" %>
+
+</body>
+</html>
