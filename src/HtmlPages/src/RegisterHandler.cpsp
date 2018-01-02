@@ -10,7 +10,7 @@
     using Poco::DateTimeFormat;
 %>
 <%!!
-    #include "HtmlPages/JclPageRequestHandler.h"
+    #include "HtmlPages/JclPageRequestHandler.hpp"
 %>
 <%
     DateTime now;

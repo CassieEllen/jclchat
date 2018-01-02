@@ -20,7 +20,7 @@
 
 #include <iostream>
 
-#include <JclServer/JclServerApp.h>
+#include <JclServer/JclServerApp.hpp>
 
 using namespace std;
 using namespace jcl;

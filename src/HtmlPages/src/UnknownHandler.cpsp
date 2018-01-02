@@ -1,4 +1,4 @@
-<%@ page class="IndexHandler" namespace="jcl" baseClass="JclPageRequestHandler"%>
+<%@ page class="UnknownHandler" namespace="jcl" baseClass="JclPageRequestHandler"%>
 <%!
     
     #include <boost/lexical_cast.hpp>
@@ -8,7 +8,6 @@
     
     #include <Poco/Util/LayeredConfiguration.h>
 
-    //using Poco::Net::NameValueCollection;
     using Poco::Net::HTTPCookie;
     using namespace std;
     
@@ -36,30 +35,19 @@
 <%
     // Code Here
 
-    // ------------------------------------------------------------------
 %>
 <html>
 <head>
-<title>Home</title>
+<title>Unknown Page</title>
 </head>
 <body>
-<h1>Home</h1>
+<h1>Unknown Page</h1>
 
 <%@ include file="Header.cpsp" %>
 
-<form action="/welcome" method="post" enctype="text/plain">
-<table>
-<tr><td>Email:    </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
-<tr><td>Password: </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
-<tr><td>          </td><td><input type="submit" name="login" value="Login"></td></tr>
-</table>
-</form>
-
-<%= error_message %>
-<% if(invalid_user) {
-       responseStream << R"msg(<p><a href="/register">Register</a> if you do not have an account.</p>)msg";
-   }
-%>
+<p>Host: <%= request.getHost() %></p>
+<p>Method: <%= request.getMethod() %></p>
+<p>URI: <%= request.getURI() %></p>
 
 <%@ include file="Footer.cpsp" %>
 

@@ -27,7 +27,7 @@ set_property(TARGET boost PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${Boost_INCLUDE
 #set_property(TARGET boost-iostreams PROPERTY IMPORTED_LOCATION ${Boost_IOSTREAMS_LIBRARY})
 
 # Include POCO
-find_package(POCO REQUIRED Foundation Net Util Data)
+find_package(POCO REQUIRED Foundation Net Util Data DataMySQL)
 add_library(poco INTERFACE IMPORTED)
 set_property(TARGET poco PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${POCO_INCLUDE_DIR})
 

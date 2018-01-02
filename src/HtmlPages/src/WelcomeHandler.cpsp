@@ -8,7 +8,7 @@
     using std::endl;
 %>
 <%!!
-    #include "HtmlPages/JclPageRequestHandler.h"
+    #include "HtmlPages/JclPageRequestHandler.hpp"
 %>
 <%%
     if( ! loggedIn() ) {
