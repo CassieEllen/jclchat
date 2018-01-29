@@ -2,7 +2,8 @@
 
 #include <JclServer/JclRequestHandlerFactory.hpp>
 
-#include <JclServer/LoginAction.hpp>
+//#include <JclServer/LoginAction.hpp>
+#include <JclServer/LoginRequestHandler.hpp>
 
 #include <Util/Util.h>
 
@@ -12,15 +13,19 @@
 #include <HtmlPages/RegisterHandler.h>
 #include <HtmlPages/WelcomeHandler.h>
 #include <HtmlPages/UnknownHandler.h>
+#include <HtmlPages/VerifyHandler.h>
 
 #include <iostream>
+#include <memory>
 
 #include "Poco/URI.h"
 #include "Poco/Path.h"
 
-#include "Poco/MD5Engine.h"
+#include "Poco/Net/HTMLForm.h"
+#include <Poco/Net/HTTPRequestHandler.h>
+#include <Poco/Net/HTTPServerRequest.h>
 
-//Poco::MD5Engine
+#include "Poco/MD5Engine.h"
 
 using namespace Poco::Net;
 using namespace std;
@@ -33,15 +38,23 @@ namespace jcl {
     {
     }
     
-    JclPageRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, const string & action)
+    HTTPRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, const string & action)
     {
+        cout << __PRETTY_FUNCTION__ << endl;
+        
         if( action == "login") {
-            auto action = LoginAction(request, _model);
-            return action.createRequestHandler(request);
+            //auto p = new LoginAction(_model);
+            //shared_ptr<LoginAction> action( p );
+            //return action->createRequestHandler(request);
+            cout << "returning LoginRequestHandler" << endl;
+            return new LoginRequestHandler();
         }
         
         if( request.getMethod() == "GET") {
             return new UnknownHandler();
+        }
+        if( action == "verify" ) {
+            return new VerifyHandler();
         }
         if( action == "welcome" ) {
             return new WelcomeHandler();
@@ -67,6 +80,7 @@ namespace jcl {
     HTTPRequestHandler* JclRequestHandlerFactory::createRequestHandler(const HTTPServerRequest& request)
     {
         cout << "\n--------------------------------------------------" << endl;
+        cout << __PRETTY_FUNCTION__ << endl;
 
         Poco::URI uri {request.getURI()};
         cout << "URI: " << uri.toString() << endl;
@@ -86,21 +100,15 @@ namespace jcl {
 
         string action {path.directory(0)};
         cout << "action: " << action << endl;
-        
+
+        //HTMLForm form(request, request.stream() );
+
         if( action.empty() ) {
             action = "login";
         }
+        cout << "action: " << action << endl;
 
         return getActionHandler(request, action);
-
-#if 0  
-            cout << "using IndexHandler" << endl;
-            return new IndexHandler();
-        } else {
-            return getActionHandler(request, action);
-        }
-        return new JclRequestHandler;
-#endif
     }
 
     string JclRequestHandlerFactory::getSessionId(const HTTPServerRequest& request)

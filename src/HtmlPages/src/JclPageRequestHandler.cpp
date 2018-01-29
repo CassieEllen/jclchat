@@ -1,8 +1,8 @@
 // JclPageRequestHandler.cpp 
 
-#include <HtmlPages/JclPageRequestHandler.h>
+#include <HtmlPages/JclPageRequestHandler.hpp>
 
-#include <JclModel/Model.h>
+#include <JclModel/Model.hpp>
 
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
@@ -36,13 +36,11 @@ using namespace std;
 
 
 namespace jcl {
-    // JclPageRequestHandler::JclPageRequestHandler(Model& model)
-    //     : model_(model)
-    // {
-    //     DateTime now;
-    //     dt_ = DateTimeFormatter::format(now, DateTimeFormat::SORTABLE_FORMAT);
-    // }
-
+    JclPageRequestHandler::~JclPageRequestHandler()
+    {
+        cout << "~JclPageRequestHandler" << endl;
+    }
+    
     string JclPageRequestHandler::createSession(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
     {
         using Poco::UUID;

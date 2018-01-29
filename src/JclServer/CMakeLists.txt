@@ -1,13 +1,14 @@
 # Define library. Only source files here!
 project(libJclServer VERSION 0.1 LANGUAGES CXX)
 
+file(GLOB_RECURSE JclServerSources
+  RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+  "*.cpp" "*.hpp")
+
+message("\nJclServerSources: ${JclServerSources}\n")
 
 add_library(JclServer
-  src/JclAction.cpp
-  src/LoginAction.cpp
-  src/JclRequestHandler.cpp
-  src/JclRequestHandlerFactory.cpp
-  src/JclServerApp.cpp)
+  ${JclServerSources} )
 
 
 # Define headers for this library. PUBLIC headers are used for

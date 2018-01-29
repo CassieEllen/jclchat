@@ -10,7 +10,7 @@ I could not get the "CodeBlocks - Ninja" generator working, but the other works 
 Creates a codeblocks project file
 
   cd build
-  cmake -G"CodeBlocks - Unix Makefiles" ../src
+  codeblocks jclchat.cbp &
 
 
 Creates a backup of the entire project, excluding the build directory.
