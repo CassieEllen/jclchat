@@ -2,6 +2,8 @@
 
 #include <JclServer/JclRequestHandlerFactory.hpp>
 
+#include <JclServer/JclRequestHandler.hpp>
+
 //#include <JclServer/LoginAction.hpp>
 #include <JclServer/LoginRequestHandler.hpp>
 
@@ -43,13 +45,11 @@ namespace jcl {
         cout << __PRETTY_FUNCTION__ << endl;
         
         if( action == "login") {
-            //auto p = new LoginAction(_model);
-            //shared_ptr<LoginAction> action( p );
-            //return action->createRequestHandler(request);
             cout << "returning LoginRequestHandler" << endl;
             return new LoginRequestHandler();
         }
-        
+
+#if 0        
         if( request.getMethod() == "GET") {
             return new UnknownHandler();
         }
@@ -59,10 +59,11 @@ namespace jcl {
         if( action == "welcome" ) {
             return new WelcomeHandler();
         }
-        
+#endif        
         
             
-        return new UnknownHandler();
+        //return new UnknownHandler();
+        return new JclRequestHandler();
     }
 
     /*

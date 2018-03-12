@@ -110,8 +110,6 @@ namespace jcl {
 
         if(error) {
             _logger.trace("error: Sending to IndexHandler");
-            //unique_ptr<JclPageRequestHandler> hp { new IndexHandler() };
-            //hp->handleRequest(request, response);
             write(request,response);
             return;
         }
