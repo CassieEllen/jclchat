@@ -1,4 +1,4 @@
-#Ubuntu 16.04.3 Server Setup
+# Ubuntu 16.04.3 Server Setup
 
 These docs target Ubuntu 6.04 on DigitalOcean.com and Kubuntu 16.04.3 where I do my home development. 
 
@@ -14,22 +14,22 @@ sudo a2enconf phpmyadmin.conf
 sudo systemctl restart apache2
 ```
 
-Install C++
+## Install C++
 ```bash
 sudo apt-get install build-essential
 ```
 
-Install Boost Libraries
+## Install Boost Libraries
 ```bash
 sudo apt install libboost-all-dev
 ```
 
-Install MySQL Client Dev
+## Install MySQL Client Dev
 ```bash
 sudo apt install libmysqlclient-dev
 ```
 
-##Install Poco Libraries
+## Install Poco Libraries
 <p style="color:red;">
 To be added later
 </p>
@@ -40,8 +40,12 @@ sudo -i
 cd /usr/local/lib
 ldconfig
 ```
+## Install Doxygen
+```bash
+sudo apt install doxygen graphviz
+```
 
-##Useful Commands
+## Useful Commands
 
 ```bash
 sudo systemctl stop apache2
