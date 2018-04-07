@@ -43,10 +43,14 @@ namespace jcl {
 
     };
 
+    ///
+    /// Provides a factory for request handlers.
+    ///
     class JclRequestHandlerFactory : public Poco::Net::HTTPRequestHandlerFactory
     {
     public:
-        JclRequestHandlerFactory(jcl::Model& model);
+        /// ctor
+        explicit JclRequestHandlerFactory(jcl::Model& model);
 
         virtual Poco::Net::HTTPRequestHandler* createRequestHandler(const Poco::Net::HTTPServerRequest& request);
 

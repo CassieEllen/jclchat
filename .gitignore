@@ -34,3 +34,6 @@
 # emacs temp files
 *.*~
 .dir-locals.el
+
+# CLion directories
+*/cmake-build-debug/*
