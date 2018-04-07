@@ -27,10 +27,10 @@
 #include <iostream>
 
 namespace jcl {
-    
+
     using namespace Poco::Net;
     using namespace std;
-    
+
     JclServerApp::JclServerApp()
         : _model(Model::instance())
         , ServerApplication()
@@ -41,7 +41,7 @@ namespace jcl {
     {
         return _model;
     }
-    
+
     int JclServerApp::main(const std::vector<std::string> &)
     {
         HTTPServer s(new JclRequestHandlerFactory(_model), ServerSocket(9090), new HTTPServerParams);
@@ -50,10 +50,10 @@ namespace jcl {
 
         string app_path = configuration.getString("application.path");
         cout << "app.path = " << app_path << endl;
-        
+
         string dbName = configuration.getString("mysql.host");
         cout << "Host: " << dbName << endl;
-        
+
         s.start();
         cout << endl << "Server started" << endl;
 
@@ -73,5 +73,10 @@ namespace jcl {
         cout << _model.toString() << endl;
         string connectString = _model.getConnectString();
         cout << "Connect String: " << connectString << endl;
+    }
+
+    string JclServerApp::getWebPath()
+    {
+        return config().getString("web.base");
     }
 }

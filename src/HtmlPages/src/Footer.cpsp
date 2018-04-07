@@ -1,7 +1,5 @@
 
 <hr>
 <p>Footer Stuff</p>
-<p><%= dt_ %></p>
 
-<p>Cookies</p>
-<p><%= cookieList_ %></p>
+<p>Copyright 2018 (c) JCL Group, All Rights Reserved.</p>

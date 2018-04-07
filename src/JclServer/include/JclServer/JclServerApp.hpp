@@ -37,6 +37,7 @@ namespace jcl {
     protected:
         int main(const std::vector<std::string> &);
         void initialize(Application& self);
+        std::string getWebPath();
 
         Model& _model;
     };

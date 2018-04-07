@@ -26,10 +26,8 @@ target_compile_features(JclModel
   
 # Depend on a library that we defined in the top-level file
 target_link_libraries(JclModel
-  Util
-  boost
-  poco
-  ${POCO_LIBRARYS}
+  poco-data
+  poco-mysql
   )
 
 # 'make install' to the correct locations (provided by GNUInstallDirs).

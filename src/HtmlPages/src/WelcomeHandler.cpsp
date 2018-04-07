@@ -13,7 +13,7 @@
 <%%
     if( ! loggedIn() ) {
     	cout << "not logged in" << endl;
-        return response.redirect("/");
+        //return response.redirect("/");
     }
 %>
 <%

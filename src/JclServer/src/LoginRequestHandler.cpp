@@ -20,7 +20,7 @@
 
 #include <JclServer/LoginRequestHandler.hpp>
 
-#include <JclServer/JclPage.hpp>
+#include <JclServer/Page.hpp>
 #include <JclServer/LoginContent.hpp>
 #include <JclServer/HeaderContent.hpp>
 #include <JclServer/FooterContent.hpp>
@@ -67,6 +67,7 @@ namespace jcl {
         bool error = false;
 
         try {
+
             if( request.getMethod() == "GET") {
                 throw UnexpectedArgumentException("LoginRequestHandler called with GET method.");
             }
@@ -124,24 +125,27 @@ namespace jcl {
     {
         _logger.trace(__PRETTY_FUNCTION__);
 
-        JclPage page("Login");
+        Page page("Login", _formData);
 
-        TextContent* text1 = new TextContent;
+#if 1
+        TextContent* text1 = new TextContent(page);
         text1->setText("<p>Some Text</p>");
 
-        TextContent* text2 = new TextContent;
+        TextContent* text2 = new TextContent(page);
         text2->setText("<p>More Text</p>");
 
-        TextContent* text3 = new TextContent;
+        TextContent* text3 = new TextContent(page);
         text3->setText("<p>End Text</p>");
+#endif
 
-        page.add(new HeaderContent);
-        page.add(new LoginContent);
-        page.add(new FooterContent);
+        page.add(new HeaderContent(page));
+        page.add(new LoginContent(page));
+        page.add(new FooterContent(page));
+#if 0
         page.addAfter("Header", text1);
         page.addAfter("Login", text2);
         page.addAfter("Footer", text3);
-        
+#endif
         page.send(request, response);
         
     }

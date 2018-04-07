@@ -49,7 +49,7 @@ namespace jcl {
 
         for(auto content: _content) {
             //out << *content;
-            content->write(out, _formData);
+            content->write(out);
         }
         //content.write(out);
     }
@@ -76,11 +76,5 @@ namespace jcl {
             _content.insert(it, p);
         }
     }
-    
-    const std::string& Page::name() const
-    {
-        return _name;
-    }
 
 }
-    

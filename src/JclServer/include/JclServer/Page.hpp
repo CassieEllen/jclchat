@@ -45,12 +45,20 @@ public:
     void add(PageContent* content);
     void addAfter(const std::string& name, PageContent* content);
 
-    const std::string& name() const;
+    const std::string& getName() const
+    {
+        return _name;
+    }
+
+    FormData* getFormData() const
+    {
+        return _formData;
+    }
 
 private:
     std::string _name;
-    std::vector< std::shared_ptr<PageContent> > _content;
     FormData* _formData;
+    std::vector< std::shared_ptr<PageContent> > _content;
 };
 
 }

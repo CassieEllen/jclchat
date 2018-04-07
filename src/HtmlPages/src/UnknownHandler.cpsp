@@ -1,4 +1,4 @@
-<%@ page class="UnknownHandler" namespace="jcl" baseClass="JclPageRequestHandler"%>
+<%@ page class="UnknownHandler" namespace="jcl" %>
 <%!
     
     #include <boost/lexical_cast.hpp>
@@ -26,7 +26,7 @@
     countCookie.setMaxAge(0);
     response.addCookie(countCookie);
 
-    checkCookies(request, response);
+    //checkCookies(request, response);
 
     bool invalid_user = false;
     string error_message {};

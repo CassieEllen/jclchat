@@ -21,14 +21,10 @@
 #ifndef LoginRequestHandler_INCLUDED
 #define LoginRequestHandler_INCLUDED
 
+#include <JclServer/Types.hpp>
+
 #include <Poco/Net/HTTPRequestHandler.h>
 #include "Poco/Logger.h"
-
-// namespace Poco {
-//     namespace Net {
-//         class HTTPRequestHandler;
-//     }
-// }
 
 namespace jcl {
 
@@ -45,6 +41,7 @@ class LoginRequestHandler : public Poco::Net::HTTPRequestHandler
     LoginRequestHandler& operator=(const LoginRequestHandler&) = delete;
 
     Poco::Logger& _logger;
+    FormData* _formData;
 };
 
 }

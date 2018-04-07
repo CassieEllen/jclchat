@@ -4,7 +4,7 @@
 
 #include <JclServer/JclRequestHandler.hpp>
 
-//#include <JclServer/LoginAction.hpp>
+#include <JclServer/FileRequestHandler.hpp>
 #include <JclServer/LoginRequestHandler.hpp>
 
 #include <Util/Util.h>
@@ -19,6 +19,7 @@
 
 #include <iostream>
 #include <memory>
+#include <regex>
 
 #include "Poco/URI.h"
 #include "Poco/Path.h"
@@ -38,18 +39,46 @@ namespace jcl {
     JclRequestHandlerFactory::JclRequestHandlerFactory(jcl::Model& model)
             : _model(model)
     {
+        cout << __PRETTY_FUNCTION__ << endl;
     }
-    
-    HTTPRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, const string & action)
+
+    RequestType JclRequestHandlerFactory::getAction(const HTTPServerRequest& request) const
     {
         cout << __PRETTY_FUNCTION__ << endl;
-        
-        if( action == "login") {
-            cout << "returning LoginRequestHandler" << endl;
+
+        Poco::URI uri {request.getURI()};
+        Poco::Path path {uri.getPath()};
+        string req {path.directory(0)};
+
+        cout << "URI: " << uri.toString() << endl;
+        cout << "path: " << uri.getPath() << endl;
+        cout << "request: " << req << endl;
+
+        std::regex iconPattern(".*\\.ico$");
+
+        bool icon = regex_match(path.toString(), iconPattern);
+        RequestType action = RequestType::file;
+
+        cout << "Returning default action login" << endl;
+        return RequestType::login;
+    }
+
+    HTTPRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, RequestType action) const
+    {
+        cout << __PRETTY_FUNCTION__ << endl;
+
+        switch(action) {
+        case RequestType::login:
             return new LoginRequestHandler();
+            break;
+        case RequestType::file:
+            return new FileRequestHandler;
+            break;
+        unknown:
+            break;
         }
 
-#if 0        
+#if 0
         if( request.getMethod() == "GET") {
             return new UnknownHandler();
         }
@@ -59,9 +88,9 @@ namespace jcl {
         if( action == "welcome" ) {
             return new WelcomeHandler();
         }
-#endif        
-        
-            
+#endif
+
+
         //return new UnknownHandler();
         return new JclRequestHandler();
     }
@@ -77,7 +106,7 @@ namespace jcl {
         Connection: keep-alive
         Upgrade-Insecure-Requests: 1
     */
-                                      
+
     HTTPRequestHandler* JclRequestHandlerFactory::createRequestHandler(const HTTPServerRequest& request)
     {
         cout << "\n--------------------------------------------------" << endl;
@@ -99,16 +128,7 @@ namespace jcl {
         cout << "depth: " << path.depth() << endl;
         cout << "directory: " << path.directory(0) << endl;
 
-        string action {path.directory(0)};
-        cout << "action: " << action << endl;
-
-        //HTMLForm form(request, request.stream() );
-
-        if( action.empty() ) {
-            action = "login";
-        }
-        cout << "action: " << action << endl;
-
+        auto action = getAction(request);
         return getActionHandler(request, action);
     }
 

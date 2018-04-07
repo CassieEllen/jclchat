@@ -71,9 +71,8 @@ target_compile_features(HtmlPages
 
 # Depend on a library that we defined in the top-level file
 target_link_libraries(HtmlPages
-  boost
   JclModel
-  ${POCO_LIBRARYS}
+  poco-net
   )
 
 # 'make install' to the correct locations (provided by GNUInstallDirs).

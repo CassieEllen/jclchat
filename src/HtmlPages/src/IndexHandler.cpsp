@@ -47,9 +47,14 @@
 
 <%@ include file="Header.cpsp" %>
 
-<form action="/welcome" method="post" enctype="text/plain">
+<form action="/login" method="post" enctype="text/plain">
 <table>
 <tr><td>Email:    </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
+<%
+    if(response.has("username-error") ) {
+        responseStream << R"msg(<tr><td colspan="2">)msg" << response["username-error"] << "</td></tr>\n";
+    }
+%>
 <tr><td>Password: </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
 <tr><td>          </td><td><input type="submit" name="login" value="Login"></td></tr>
 </table>

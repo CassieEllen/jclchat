@@ -1,15 +1,19 @@
 # Define library. Only source files here!
 project(libJclServer VERSION 0.1 LANGUAGES CXX)
 
+# Locate all source files
+#
 file(GLOB_RECURSE JclServerSources
   RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
   "*.cpp" "*.hpp")
 
 message("\nJclServerSources: ${JclServerSources}\n")
 
+# Define JclServer library
+#
 add_library(JclServer
-  ${JclServerSources} )
-
+  ${JclServerSources}
+  )
 
 # Define headers for this library. PUBLIC headers are used for
 # compiling the library, and will be added to consumers' build
@@ -32,10 +36,8 @@ target_link_libraries(JclServer
   HtmlPages
   JclModel
   Util
-  boost
-  poco
-  util
-  #${POCO_LIBRARYS}
+  Boost::system
+  Boost::filesystem
   )
 
 # 'make install' to the correct locations (provided by GNUInstallDirs).
