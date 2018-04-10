@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="jclchat.com">
+    <serverData>
+      <paths name="jclchat.com">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/cenicol/chat" local="$PROJECT_DIR$/src/cmake-build-debug/JclChat/CMakeFiles/JclChat.dir" web="/" />
+            <mapping local="" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
