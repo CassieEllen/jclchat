@@ -22,6 +22,7 @@
 #define PageContent_INCLUDED
 
 #include <JclServer/Types.hpp>
+#include <JclServer/PocoClasses.hpp>
 
 #include <Poco/Net/NameValueCollection.h>
 
@@ -48,7 +49,6 @@ namespace jcl {
     protected:
         std::string _name;
         Page& _page;
-        std::vector<PageContent> _parts;
     };
 
     inline std::ostream& operator<<(std::ostream& os, const PageContent& rhs)

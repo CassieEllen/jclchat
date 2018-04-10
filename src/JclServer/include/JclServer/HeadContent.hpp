@@ -1,4 +1,4 @@
-// LoginRequestHandler.hpp
+// HeadContent.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -18,31 +18,22 @@
 //
 // SPDX-License-Identifier:	GPL-3.0
 
-#ifndef LoginRequestHandler_INCLUDED
-#define LoginRequestHandler_INCLUDED
+#ifndef HeadContent_INCLUDED
+#define HeadContent_INCLUDED
 
-#include <JclServer/Types.hpp>
-
-#include <Poco/Net/HTTPRequestHandler.h>
-#include <Poco/Logger.h>
+#include <JclServer/PageContent.hpp>
 
 namespace jcl {
 
-class LoginRequestHandler : public Poco::Net::HTTPRequestHandler
-{
- public:
-    LoginRequestHandler();
-    virtual ~LoginRequestHandler();
-    virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
-    void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+    class HeadContent : public PageContent
+    {
+        public:
+        HeadContent(Page& page);
+        virtual ~HeadContent() = default;
     
- private:
-    LoginRequestHandler(const LoginRequestHandler&) = delete;
-    LoginRequestHandler& operator=(const LoginRequestHandler&) = delete;
+        std::ostream& write(std::ostream& os) const;
 
-    Poco::Logger& _logger;
-    NameValueCollection _formData;
-};
+    };
 
 }
-#endif // LoginRequestHandler_INCLUDED
+#endif // HeadContent_INCLUDED

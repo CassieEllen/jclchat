@@ -36,20 +36,10 @@ namespace jcl {
 
     std::ostream& LoginContent::write(std::ostream& os) const
     {
-        //HeaderContent header;
-        //FooterContent footer;
-        //TextContent text1;
-        //text1.setText("<p>Some Text</p>");
-        
-        os << 
-R"msgx(<html>
-<head>
-<title>Home</title>
-</head>
-<body>
+        os <<
+R"msgx(
 <h1>Home</h1>
 )msgx"
-            //<< header
            << R"msgx(
 <form action="/login" method="post" enctype="text/plain">
 <table>
@@ -58,11 +48,6 @@ R"msgx(<html>
 <tr><td>          </td><td><input type="submit" name="login" value="Login"></td></tr>
 </table>
 </form>
-)msgx"
-            //<< footer
-           << R"msgx(
-</body>
-</html>
 )msgx" << endl;
 
         return os;

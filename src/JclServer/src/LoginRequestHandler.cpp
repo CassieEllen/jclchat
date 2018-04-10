@@ -30,8 +30,6 @@
 #include <HtmlPages/LoginHandler.h>
 #include <HtmlPages/IndexHandler.h>
 
-#include <Poco/Logger.h>
-
 #include <Poco/Net/HTMLForm.h>
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
@@ -51,12 +49,12 @@ namespace jcl {
         : _logger(Poco::Logger::get("LoginRequestHandler"))
     {
         _logger.setLevel(Poco::Message::PRIO_TRACE);
-        _logger.trace(__PRETTY_FUNCTION__);
+        //_logger.trace(__PRETTY_FUNCTION__);
     }
 
     LoginRequestHandler::~LoginRequestHandler()
     {
-        _logger.trace(__PRETTY_FUNCTION__);
+        //_logger.trace(__PRETTY_FUNCTION__);
     }
 
     void LoginRequestHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response)
@@ -125,7 +123,8 @@ namespace jcl {
     {
         _logger.trace(__PRETTY_FUNCTION__);
 
-        Page page("Login", _formData);
+        Page page("Login", request, response);
+        page.setFormData(_formData);
 
 #if 1
         TextContent* text1 = new TextContent(page);
@@ -146,7 +145,7 @@ namespace jcl {
         page.addAfter("Login", text2);
         page.addAfter("Footer", text3);
 #endif
-        page.send(request, response);
+        page.send();
         
     }
     

@@ -1,4 +1,4 @@
-// LoginRequestHandler.hpp
+// HeadContent.cpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -18,31 +18,29 @@
 //
 // SPDX-License-Identifier:	GPL-3.0
 
-#ifndef LoginRequestHandler_INCLUDED
-#define LoginRequestHandler_INCLUDED
+#include <JclServer/HeadContent.hpp>
+#include <JclServer/Page.hpp>
 
-#include <JclServer/Types.hpp>
-
-#include <Poco/Net/HTTPRequestHandler.h>
-#include <Poco/Logger.h>
+#include <iostream>
 
 namespace jcl {
+    using namespace std;
 
-class LoginRequestHandler : public Poco::Net::HTTPRequestHandler
-{
- public:
-    LoginRequestHandler();
-    virtual ~LoginRequestHandler();
-    virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
-    void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+    HeadContent::HeadContent(Page& page)
+            : PageContent("Head", page)
+    {
+        cout << __PRETTY_FUNCTION__ << endl;
+    }
     
- private:
-    LoginRequestHandler(const LoginRequestHandler&) = delete;
-    LoginRequestHandler& operator=(const LoginRequestHandler&) = delete;
-
-    Poco::Logger& _logger;
-    NameValueCollection _formData;
-};
+    std::ostream& HeadContent::write(std::ostream& os) const {
+        cout << __PRETTY_FUNCTION__ << endl;
+        string title = _page.getFormData().get("page.title", "jclchat");
+        os << "<head>";
+        os << "<title>" << title << "</title>";
+        //os << R"msgx(
+        //   )msgx";
+        os << "</head>";
+    }
 
 }
-#endif // LoginRequestHandler_INCLUDED
+    

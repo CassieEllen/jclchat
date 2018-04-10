@@ -20,9 +20,13 @@
 
 #include <JclServer/Page.hpp>
 #include <JclServer/PageContent.hpp>
+#include <JclServer/HeadContent.hpp>
 
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
+#include <Poco/Exception.h>
+
+#include <iostream>
 
 
 namespace jcl {
@@ -31,27 +35,46 @@ namespace jcl {
     
     using Poco::Net::HTTPServerRequest;
     using Poco::Net::HTTPServerResponse;
+    using Poco::NullPointerException;
+    using Poco::Net::NameValueCollection;
     
-    Page::Page(const std::string& name, FormData* data)
+    Page::Page(const std::string& name, Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response)
         : _name(name)
-        , _formData(data)
+        , _request(request)
+        , _response(response)
     {
+        cout << __PRETTY_FUNCTION__ << endl;
+
+        // Set the default page title.
+        if( ! _formData.has("page.title") ) {
+            _formData.set("page.title", "jclchat");
+        }
     }
-    
-    void Page::send(HTTPServerRequest &request, HTTPServerResponse &response)
+
+    Page::~Page()
+    {
+
+    }
+
+    void Page::send()
     {
         //_logger.trace(__PRETTY_FUNCTION__);
 
-        response.setStatus(HTTPResponse::HTTP_OK);
-        response.setContentType("text/html");
+        HeadContent headContent(*this);
+        _response.setStatus(HTTPResponse::HTTP_OK);
+        _response.setContentType("text/html");
 
-        ostream& out = response.send();
+        ostream& out = _response.send();
+
+        out << "<html>" << endl;
+        out << headContent;
+        out << "<body>" << endl;
 
         for(auto content: _content) {
             //out << *content;
             content->write(out);
         }
-        //content.write(out);
+        out << "</body>" << "</html>" << endl;
     }
 
     void Page::add(PageContent* content)
@@ -76,5 +99,6 @@ namespace jcl {
             _content.insert(it, p);
         }
     }
+
 
 }

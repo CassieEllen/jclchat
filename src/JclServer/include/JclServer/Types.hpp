@@ -23,10 +23,12 @@
 
 #include <Poco/Net/NameValueCollection.h>
 
+#include <memory>
+
 namespace jcl {
 
-    using FormData = Poco::Net::NameValueCollection;
-
+    //using FormData = std::shared_ptr<Poco::Net::NameValueCollection>;
+    using  Poco::Net::NameValueCollection;
 }
 
 #endif // JclTypes_INCLUDED

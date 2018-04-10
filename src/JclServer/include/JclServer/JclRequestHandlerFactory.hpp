@@ -40,7 +40,7 @@ namespace jcl {
         index,
         login,
         file,
-
+        unknown
     };
 
     ///

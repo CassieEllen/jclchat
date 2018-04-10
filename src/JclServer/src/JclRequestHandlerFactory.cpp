@@ -6,6 +6,8 @@
 
 #include <JclServer/FileRequestHandler.hpp>
 #include <JclServer/LoginRequestHandler.hpp>
+#include <JclServer/UnknownRequestHandler.hpp>
+#include <JclServer/WelcomeRequestHandler.hpp>
 
 #include <Util/Util.h>
 
@@ -42,40 +44,48 @@ namespace jcl {
         cout << __PRETTY_FUNCTION__ << endl;
     }
 
-    RequestType JclRequestHandlerFactory::getAction(const HTTPServerRequest& request) const
-    {
-        cout << __PRETTY_FUNCTION__ << endl;
-
-        Poco::URI uri {request.getURI()};
-        Poco::Path path {uri.getPath()};
-        string req {path.directory(0)};
+    RequestType JclRequestHandlerFactory::getAction(const HTTPServerRequest& request) const {
+        Poco::URI uri{request.getURI()};
+        Poco::Path path{uri.getPath()};
+        string req{path.directory(0)};
 
         cout << "URI: " << uri.toString() << endl;
         cout << "path: " << uri.getPath() << endl;
         cout << "request: " << req << endl;
 
-        std::regex iconPattern(".*\\.ico$");
+        if (req.empty()) {
+            return RequestType::index;
+        }
+
+        static std::regex iconPattern(".*\\.ico$");
 
         bool icon = regex_match(path.toString(), iconPattern);
         RequestType action = RequestType::file;
 
-        cout << "Returning default action login" << endl;
-        return RequestType::login;
+        if (req == "login") {
+            cout << "Returning default action login" << endl;
+            return RequestType::login;
+        }
+
+        return RequestType::unknown;
     }
 
     HTTPRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, RequestType action) const
     {
-        cout << __PRETTY_FUNCTION__ << endl;
-
         switch(action) {
-        case RequestType::login:
-            return new LoginRequestHandler();
-            break;
-        case RequestType::file:
-            return new FileRequestHandler;
-            break;
-        unknown:
-            break;
+            case RequestType::index:
+                return new WelcomeRequestHandler;
+                break;
+            case RequestType::login:
+                return new LoginRequestHandler();
+                break;
+            case RequestType::file:
+                return new FileRequestHandler;
+                break;
+            case RequestType::unknown:
+            default:
+                return new UnknownRequestHandler;
+                break;
         }
 
 #if 0
@@ -110,23 +120,16 @@ namespace jcl {
     HTTPRequestHandler* JclRequestHandlerFactory::createRequestHandler(const HTTPServerRequest& request)
     {
         cout << "\n--------------------------------------------------" << endl;
-        cout << __PRETTY_FUNCTION__ << endl;
-
-        Poco::URI uri {request.getURI()};
-        cout << "URI: " << uri.toString() << endl;
-        cout << "path: " << uri.getPath() << endl;
+        cout << "\n--------------------------------------------------" << endl;
+        //cout << __PRETTY_FUNCTION__ << endl;
 
         // Display header records
+        cout << "Header Records:" << endl;
         for(auto it : request) {
             cout << "\t" << it.first << ": " << it.second << endl;
         }
 
         cout << "method: " << request.getMethod() << endl;
-
-        Poco::Path path {uri.getPath()};
-        cout << "Path: " << path.toString() << endl;
-        cout << "depth: " << path.depth() << endl;
-        cout << "directory: " << path.directory(0) << endl;
 
         auto action = getAction(request);
         return getActionHandler(request, action);

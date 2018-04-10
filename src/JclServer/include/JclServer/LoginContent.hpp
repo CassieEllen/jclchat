@@ -33,7 +33,6 @@ public:
     virtual ~LoginContent() = default;
 
     std::ostream& write(std::ostream& os) const;
-
 };
 
 }
