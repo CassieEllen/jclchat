@@ -37,10 +37,11 @@ namespace jcl {
     class Model;
 
     enum class RequestType {
-        index,
-        login,
-        file,
-        unknown
+        rtUnknown,
+        rtIndex,
+        rtLogin,
+        rtFile,
+        rtRegister
     };
 
     ///

@@ -6,6 +6,7 @@
 
 #include <JclServer/FileRequestHandler.hpp>
 #include <JclServer/LoginRequestHandler.hpp>
+#include <JclServer/RegisterRequestHandler.hpp>
 #include <JclServer/UnknownRequestHandler.hpp>
 #include <JclServer/WelcomeRequestHandler.hpp>
 
@@ -14,7 +15,6 @@
 #include <JclModel/Model.hpp>
 
 //#include <HtmlPages/IndexHandler.h>
-#include <HtmlPages/RegisterHandler.h>
 #include <HtmlPages/WelcomeHandler.h>
 #include <HtmlPages/UnknownHandler.h>
 #include <HtmlPages/VerifyHandler.h>
@@ -54,35 +54,41 @@ namespace jcl {
         cout << "request: " << req << endl;
 
         if (req.empty()) {
-            return RequestType::index;
+            return RequestType::rtIndex;
         }
 
         static std::regex iconPattern(".*\\.ico$");
 
         bool icon = regex_match(path.toString(), iconPattern);
-        RequestType action = RequestType::file;
+        RequestType action = RequestType::rtFile;
 
         if (req == "login") {
-            cout << "Returning default action login" << endl;
-            return RequestType::login;
+            return RequestType::rtLogin;
+        }
+        if (req == "register") {
+            return RequestType::rtRegister;
         }
 
-        return RequestType::unknown;
+        return RequestType::rtUnknown;
     }
 
     HTTPRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, RequestType action) const
     {
-        switch(action) {
-            case RequestType::index:
+        switch(action) {            cout << "Returning default action login" << endl;
+
+            case RequestType::rtIndex:
                 return new WelcomeRequestHandler;
                 break;
-            case RequestType::login:
+            case RequestType::rtLogin:
                 return new LoginRequestHandler();
                 break;
-            case RequestType::file:
+            case RequestType::rtFile:
                 return new FileRequestHandler;
                 break;
-            case RequestType::unknown:
+            case RequestType::rtRegister:
+                return new RegisterRequestHandler;
+                break;
+            case RequestType::rtUnknown:
             default:
                 return new UnknownRequestHandler;
                 break;
