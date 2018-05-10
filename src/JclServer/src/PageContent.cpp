@@ -49,5 +49,9 @@ namespace jcl {
         return os;
     }
 
+    bool PageContent::verifyj() const {
+        return true;
+    }
+
 }
     

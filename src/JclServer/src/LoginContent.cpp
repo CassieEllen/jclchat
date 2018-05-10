@@ -38,12 +38,12 @@ namespace jcl {
     {
         os <<
 R"msgx(
-<h1>Home</h1>
+<h1>Login</h1>
 )msgx"
            << R"msgx(
-<form action="/login" method="post" enctype="text/plain">
+<form action="/verify" method="post" enctype="text/plain">
 <table>
-<tr><td>Email:    </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
+<tr><td>Email:    </td><td><input type="text" name="email" size="16" maxlength="32"></td></tr>
 <tr><td>Password: </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
 <tr><td>          </td><td><input type="submit" name="login" value="Login"></td></tr>
 </table>
