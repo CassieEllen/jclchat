@@ -1,4 +1,4 @@
-// HeadContent.hpp
+/// @file HeadContent.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -28,10 +28,17 @@ namespace jcl {
     class HeadContent : public PageContent
     {
         public:
-        HeadContent(Page& page);
+        /// @brief Content for the <head>...</head> section
+        /// @param page reference to the containing @ref page.
+        explicit HeadContent(Page& page);
+
+        /// @brief dtor
         virtual ~HeadContent() = default;
-    
-        std::ostream& write(std::ostream& os) const;
+
+        /// @brief Writes the content to ostream
+        /// @param os the stream to write to
+        /// @return the stream ostream
+        std::ostream& write(std::ostream& os) const override;
 
     };
 

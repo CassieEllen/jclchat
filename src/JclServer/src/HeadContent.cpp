@@ -1,4 +1,4 @@
-// HeadContent.cpp
+/// @brief HeadContent.cpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -29,17 +29,14 @@ namespace jcl {
     HeadContent::HeadContent(Page& page)
             : PageContent("Head", page)
     {
-        cout << __PRETTY_FUNCTION__ << endl;
     }
     
     std::ostream& HeadContent::write(std::ostream& os) const {
-        cout << __PRETTY_FUNCTION__ << endl;
         string title = _page.getFormData().get("page.title", "jclchat");
-        os << "<head>";
-        os << "<title>" << title << "</title>";
-        //os << R"msgx(
-        //   )msgx";
-        os << "</head>";
+        os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
+        os << "<head>" << endl
+            << "<title>" << title << "</title>"
+            << "</head>";
     }
 
 }

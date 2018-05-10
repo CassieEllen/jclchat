@@ -45,17 +45,16 @@ namespace jcl {
     WelcomeContent::WelcomeContent(Page& page)
             : PageContent("Welcome", page)
     {
-        cout << __PRETTY_FUNCTION__ << endl;
     }
 
     std::ostream& WelcomeContent::write(std::ostream& os) const {
-        cout << __PRETTY_FUNCTION__ << endl;
         auto data = _page.getFormData();
 
         string title = data.get("page.title","Welcome");
+        os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
         os << "<h1>" << title << "</h1>" << endl;
 
-                os << R"msgx(
+          os << R"msgx(
 <p>Welcome Content</p>
 <p><a href="login">login</a> or <a href="register">register</a>.</p>
         )msgx" << endl;
@@ -66,7 +65,7 @@ namespace jcl {
     WelcomeRequestHandler::WelcomeRequestHandler()
             : _logger(Poco::Logger::get("WelcomeRequestHandler"))
     {
-        _logger.setLevel(Poco::Message::PRIO_TRACE);
+        _logger.setLevel(Poco::Message::PRIO_DEBUG);
         _logger.trace(__PRETTY_FUNCTION__);
     }
 
@@ -74,7 +73,6 @@ namespace jcl {
     {
         _logger.trace(__PRETTY_FUNCTION__);
 
-        NameValueCollection messages;
         write(request, response);
     }
 

@@ -45,6 +45,7 @@ namespace jcl {
         void setName(const std::string& name);
     
         virtual std::ostream& write(std::ostream& os) const;
+        virtual bool verifyj() const;
 
     protected:
         std::string _name;

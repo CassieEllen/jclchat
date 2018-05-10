@@ -37,6 +37,7 @@ namespace jcl {
     
     ostream& FooterContent::write(ostream& os) const
     {
+        os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
         os <<
 R"msg(
 <hr>
