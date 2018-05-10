@@ -24,24 +24,26 @@
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Logger.h>
 
+#include <boost/filesystem.hpp>
+
 namespace jcl {
 
 class FileRequestHandler : public Poco::Net::HTTPRequestHandler
 {
 public:
     FileRequestHandler();
-    virtual ~FileRequestHandler();
+    virtual ~FileRequestHandler() = default;
+    FileRequestHandler(const FileRequestHandler&) = delete;
+    FileRequestHandler& operator=(const FileRequestHandler&) = delete;
+
     virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
     void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
     
  private:
-    FileRequestHandler(const FileRequestHandler&) = delete;
-    FileRequestHandler& operator=(const FileRequestHandler&) = delete;
-
-    void getContentType();
+    void getContentType(const boost::filesystem::path& path);
 
     Poco::Logger& _logger;
-    std::string _path;
+    boost::filesystem::path _path;
     std::string _contentType;
 };
 

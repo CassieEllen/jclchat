@@ -8,6 +8,7 @@
 #include <JclServer/LoginRequestHandler.hpp>
 #include <JclServer/RegisterRequestHandler.hpp>
 #include <JclServer/UnknownRequestHandler.hpp>
+#include <JclServer/VerifyRequestHandler.hpp>
 #include <JclServer/WelcomeRequestHandler.hpp>
 
 #include <Util/Util.h>
@@ -58,15 +59,20 @@ namespace jcl {
         }
 
         static std::regex iconPattern(".*\\.ico$");
-
         bool icon = regex_match(path.toString(), iconPattern);
-        RequestType action = RequestType::rtFile;
+        if (icon) {
+            cout << "Icon File" << endl;
+            return RequestType::rtFile;
+        }
 
         if (req == "login") {
             return RequestType::rtLogin;
         }
         if (req == "register") {
             return RequestType::rtRegister;
+        }
+        if (req == "verify") {
+            return RequestType::rtVerify;
         }
 
         return RequestType::rtUnknown;
@@ -87,6 +93,9 @@ namespace jcl {
                 break;
             case RequestType::rtRegister:
                 return new RegisterRequestHandler;
+                break;
+            case RequestType::rtVerify:
+                return new VerifyRequestHandler;
                 break;
             case RequestType::rtUnknown:
             default:
