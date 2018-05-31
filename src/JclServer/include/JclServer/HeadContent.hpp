@@ -25,20 +25,27 @@
 
 namespace jcl {
 
+    /// @brief Contains the &lt;head> . . . &lt;/head> section
+    /// <p>Content for the <head>...</head> section/p>
+    /// <p>The page title is set by the key "page.title"</p>
+    ///
     class HeadContent : public PageContent
     {
-        public:
-        /// @brief Content for the <head>...</head> section
+    public:
+        /// @brief Constructor
         /// @param page reference to the containing @ref page.
         explicit HeadContent(Page& page);
 
-        /// @brief dtor
+        /// @brief Destructor
         virtual ~HeadContent() = default;
 
         /// @brief Writes the content to ostream
         /// @param os the stream to write to
         /// @return the stream ostream
         std::ostream& write(std::ostream& os) const override;
+
+    private:
+
 
     };
 

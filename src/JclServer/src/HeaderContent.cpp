@@ -38,13 +38,8 @@ namespace jcl {
     ostream& HeaderContent::write(ostream& os) const
     {
         auto& data = _page.getFormData();
-        auto h1 = data.get("page.title", "page.h1");
-        //string h1 {"oops"};
-        try {
-            h1 = data.get("page.h1");
-        } catch(Exception& e) {
-            cerr << "Exception: " << e.message() << endl;
-        }
+        auto h1 = data.get("page.h1", "page.h1");
+
         os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
         os << "<h1>" << h1 << "</h1>" << endl
            << R"msg(<a href="\">Home</a>)msg"

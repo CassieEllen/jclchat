@@ -25,9 +25,16 @@
 namespace jcl {
     using namespace std;
 
-    TextContent::TextContent(Page& page)
-        : PageContent("Text", page)
+    TextContent::TextContent(const std::string &name, Page& page)
+        : PageContent(name, page)
     {
+    }
+
+    TextContent::TextContent(const std::string &name, const std::string &text, Page &page)
+        :   PageContent(name, page)
+        , _text(text)
+    {
+
     }
 
     TextContent::~TextContent()
@@ -42,6 +49,7 @@ namespace jcl {
     ostream& TextContent::write(ostream& os) const
     {
         os << _text << endl;
+        return os;
     }
 
 }

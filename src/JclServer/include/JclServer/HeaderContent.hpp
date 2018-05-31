@@ -33,9 +33,10 @@ public:
         : PageContent("Header", page)
     {
     }
-    ~HeaderContent();
+
+    virtual ~HeaderContent();
     
-    std::ostream& write(std::ostream& os) const;
+    std::ostream& write(std::ostream& os) const override;
 
 };
 

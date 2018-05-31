@@ -19,6 +19,7 @@
 // SPDX-License-Identifier:	GPL-3.0
 
 #include <JclServer/HeadContent.hpp>
+
 #include <JclServer/Page.hpp>
 
 #include <iostream>
@@ -27,16 +28,19 @@ namespace jcl {
     using namespace std;
 
     HeadContent::HeadContent(Page& page)
-            : PageContent("Head", page)
+            : PageContent("head", page)
     {
     }
     
     std::ostream& HeadContent::write(std::ostream& os) const {
-        string title = _page.getFormData().get("page.title", "jclchat");
-        os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
+        string title = _page.getFormData().get("page.title", "page.title");
+
         os << "<head>" << endl
-            << "<title>" << title << "</title>"
-            << "</head>";
+            << "<title>" << title << "</title>" << endl;
+
+        os <<  "<script type='text/javascript' src='" << "/scripts/jquery.js'></script>" << endl;
+        //os <<  "<link type='text/css' href='/css/jclchat.css' rel='stylesheet' />" << endl;
+        os << "</head>" << endl;
     }
 
 }
