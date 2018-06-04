@@ -20,15 +20,20 @@
 
 #include <JclServer/UnknownRequestHandler.hpp>
 
+#include <Util/HtmlTags.hpp>
 #include <JclServer/Page.hpp>
 #include <JclServer/HeaderContent.hpp>
 #include <JclServer/FooterContent.hpp>
 #include <JclServer/TextContent.hpp>
+
 #include <Poco/Net/HTMLForm.h>
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/Util/OptionException.h>
+#include <Poco/URI.h>
+#include <Poco/Path.h>
 
+#include <iostream>
 
 namespace jcl {
   using namespace std;
@@ -37,34 +42,49 @@ namespace jcl {
   using Poco::Util::MissingArgumentException;
   using Poco::Util::UnexpectedArgumentException;
 
+  using jcl::HtmlTags;
+    using Poco::Exception;
+
     UnknownContent::UnknownContent(Page &page)
             : PageContent("Unknown", page) {
-    }
-
-    void UnknownContent::tableEntry(ostream& os, const std::string &key, const std::string &value) const
-    {
-        os << "<tr><th>" << key << "</th><td>" << value << "</td></tr>";
     }
 
     std::ostream &UnknownContent::write(std::ostream &os) const {
         os << R"msgx(<p>UnknownContent</p>)msgx" << endl;
 
-        auto & request = _page.getRequest();
+        auto& request = _page.getRequest();
+        HTMLForm form(request, request.stream());
+
+        Poco::URI uri{_page.getRequest().getURI()};
+        Poco::Path path{uri.getPath()};
+        auto data = _page.getFormData();
+        data.set("page.h1", "Unknown Request Handler");
+
+        string req{path.directory(0)};
+
+        // Display request
+        os << "<p>URI: "     << uri.toString() << "</p>" << endl;
+        os << "<p>path: "    << uri.getPath()  << "</p>" << endl;
+        os << "<p>request: " << req            << "</p>" << endl;
 
         // Display header records
-        os << "<p>Header Records:</p>" << "<ul>";
+        os << "<p>Header Records:" << "<table>" << endl;
         for (auto it : _page.getRequest()) {
-            os << "<li>" << it.first << ": " << it.second << "</li>" << endl;
+            os << HtmlTags::tableEntry(it) << endl;
         }
-        os << "</ul>";
+        os << "</table></p>" << endl;
 
-
-        HTMLForm form(_page.getRequest(), _page.getRequest().stream());
-        os << "<p>Form:</>" << "<ul>";
+        os << "<p>Form:</p>" << endl;
+        os << "<table>" << endl;
+        os << "<tr><th>size</th><td>" << form.size() << "</td></tr>" << endl;
         for (auto it : form ) {
-            os << "<li>" << it.first << ": " << it.second << "</li>" << endl;
+            os << HtmlTags::tableEntry(it) << endl;
         }
-        os << "</ul>";
+        for (int i = 0; i < form.size(); ++i) {
+            //
+            // os << HtmlTags::tableEntry()
+        }
+        os << "</table></p>" << endl;
 
         NameValueCollection cookies;
         request.getCookies(cookies);
@@ -72,13 +92,18 @@ namespace jcl {
         for (auto it : cookies ) {
             os << "<li>" << it.first << ": " << it.second << "</li>" << endl;
         }
-        os << "</ul>";
+        os << "</ul>" << endl;
 
-        os << "<table>";
-        tableEntry(os, "ClientAddress:", request.clientAddress().toString());
-        tableEntry(os, "Method:", request.getMethod());
+        os << "<p>FormData" << endl << "<table>" << endl;
+        for (auto it : data) {
+           os << HtmlTags::tableEntry(it) << endl;
+        }
+        os << "</table></p>" << endl;
 
-        os << "<table>";
+        os << "<table>" << endl;
+        os << HtmlTags::tableEntry("ClientAddress:", request.clientAddress().toString());
+        os << HtmlTags::tableEntry("Method:", request.getMethod());
+        os << "</table>";
 
         return os;
     }
@@ -89,7 +114,7 @@ namespace jcl {
         : _logger(Poco::Logger::get("UnknownRequestHandler"))
     {
         _logger.setLevel(Poco::Message::PRIO_TRACE);
-        //_logger.trace(__PRETTY_FUNCTION__);
+        _logger.trace(__PRETTY_FUNCTION__);
     }
 
     void UnknownRequestHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response) {
@@ -122,7 +147,21 @@ namespace jcl {
           _logger.trace(__PRETTY_FUNCTION__);
 
           Page page("Unknown", request, response);
-          //auto data = page.setFormData(_formData);
+          auto& data = page.getFormData();
+
+          // Set Page Title
+          data.set("page.title", "Unknown Handler");
+
+          // Set Header Content heading
+          data.set("page.h1", "Unknown Request Handler");
+          data.set("page.h1", "sadness");
+
+          try {
+              auto h1 = data.get("page.h1");
+          } catch(Exception& e) {
+              cerr << "Exception: " << e.message() << endl;
+          }
+
           page.add(new HeaderContent(page));
           page.add(new UnknownContent(page));
           page.add(new FooterContent(page));

@@ -34,11 +34,10 @@ class UnknownContent : public PageContent
 public:
     UnknownContent(Page& page);
     virtual ~UnknownContent() = default;
+    UnknownContent(const UnknownContent&) = delete;
+    UnknownContent&operator=(const UnknownContent&) = delete;
 
     std::ostream& write(std::ostream& os) const;
-
-private:
-    void tableEntry(std::ostream& os, const std::string &key, const std::string &value) const;
 };
 
 class UnknownRequestHandler : public Poco::Net::HTTPRequestHandler
