@@ -1,7 +1,6 @@
 # https://rix0r.nl/blog/2015/08/13/cmake-guide/
-# At LEAST 2.8 but newer is better
+project(jclchat LANGUAGES CXX)
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
-project(jclchat VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -82,8 +81,8 @@ set_property(TARGET poco-mysql PROPERTY IMPORTED_LOCATION ${POCO_DataMySQL_LIBRA
 
 # Targets that we develop here
 enable_testing()
-add_subdirectory(HtmlPages)
 add_subdirectory(Util)
+#add_subdirectory(HtmlPages)
 add_subdirectory(JclModel)
 add_subdirectory(JclServer)
 add_subdirectory(JclChat)
