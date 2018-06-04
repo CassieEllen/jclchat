@@ -1,4 +1,4 @@
-// Page.hpp
+/// @file Page.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -23,6 +23,7 @@
 
 #include <JclServer/PocoClasses.hpp>
 
+#include <Poco/Logger.h>
 #include <Poco/Net/NameValueCollection.h>
 
 #include <memory>
@@ -37,47 +38,61 @@ namespace jcl {
     /// Provides the functionality of an HTML page.
     class Page {
     public:
-        /// Constructor
+        /// @brief Constructor
+        /// @param name
+        /// @param request
+        /// @param response
         Page(const std::string &name, Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response);
 
-        /// Destructor
-        ~Page();
+        /// @brief Destructor
+        virtual ~Page();
 
-        /// Do not allow copying
+        /// @brief Do not allow copying
         Page(const Page&) = delete;
+
+        /// @brief Disable operater=
+        /// @return does not get executed
         Page& operator=(const Page&) = delete;
 
-        // Send the page.
+        /// @brief Send the page.
         void send();
 
-        // Add content to the end of the content list.
+        /// @brief Add content to the end of the content list.
+        /// @param content content to be added
         void add(PageContent *content);
 
-        // Add content after the named content.
+        /// @brief Add content after the named content.
+        /// @param name
+        /// @param content
         void addAfter(const std::string &name, PageContent *content);
 
-        /// Get the page name
+        /// @brief Get the page name
+        /// @return the page name
         const std::string &getName() const {
             return _name;
         }
 
-        /// Set the page name
+        /// @brief Set the page name
+        /// @param name name of the page
         void setName(const std::string &name) {
             _name = name;
         }
 
-        /// Get the page variables
-        const Poco::Net::NameValueCollection &getFormData() const {
+        /// @brief Get the page variables
+        /// @return NameValueCollection containg the form data;
+        Poco::Net::NameValueCollection &getFormData() {
             return _formData;
         }
 
-        /// Set the page variables
+        /// @brief Set the page variables
+        /// @param data
         void setFormData(const Poco::Net::NameValueCollection &data) {
             _formData = data;
         }
 
-        /// Get the HTTPServerRequest
-        Poco::Net::HTTPServerRequest &getRequest() const {
+        /// @brief Get the HTTPServerRequest
+        /// @return
+        Poco::Net::HTTPServerRequest &getRequest() {
             return _request;
         }
 
@@ -87,16 +102,22 @@ namespace jcl {
         }
 
     private:
-        /// Name of page
+        /// @brief Name of page
         std::string _name;
-        /// Client Request
+
+        /// @brief Client Request
         Poco::Net::HTTPServerRequest &_request;
-        /// Client Response
+
+        /// @brief Client Response
         Poco::Net::HTTPServerResponse &_response;
-        /// Page variables sent to the content
+
+        /// @brief Page variables sent to the content
         mutable Poco::Net::NameValueCollection _formData;
-        /// Page content vector
+
+        /// @brief Page content vector
         std::vector<std::shared_ptr<PageContent> > _content;
+
+        Poco::Logger& _logger;
     };
 
 }

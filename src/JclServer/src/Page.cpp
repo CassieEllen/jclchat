@@ -21,7 +21,9 @@
 #include <JclServer/Page.hpp>
 #include <JclServer/PageContent.hpp>
 #include <JclServer/HeadContent.hpp>
+#include <JclServer/TextContent.hpp>
 
+#include <Poco/Util/Application.h>
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/Exception.h>
@@ -37,44 +39,52 @@ namespace jcl {
     using Poco::Net::HTTPServerResponse;
     using Poco::NullPointerException;
     using Poco::Net::NameValueCollection;
-    
-    Page::Page(const std::string& name, Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response)
-        : _name(name)
-        , _request(request)
-        , _response(response)
+
+    Page::Page(const std::string &name, Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response)
+            : _name(name)
+            , _request(request)
+            , _response(response)
+            , _formData()
+            , _content()
+            , _logger(Poco::Logger::get("Page"))
     {
-        cout << __PRETTY_FUNCTION__ << endl;
+        _logger.trace(__PRETTY_FUNCTION__);
 
         // Set the default page title.
-        if( ! _formData.has("page.title") ) {
+        if (!_formData.has("page.title")) {
             _formData.set("page.title", "jclchat");
         }
+
+        // Add in the head section
+        add(new TextContent("doctype", "<!DOCTYPE html>", *this));
+        add(new TextContent("html", "<html>", *this));
+        add(new HeadContent(*this));
+        add(new TextContent("body", "<body>", *this));
     }
 
     Page::~Page()
     {
-
     }
 
     void Page::send()
     {
-        //_logger.trace(__PRETTY_FUNCTION__);
-
-        HeadContent headContent(*this);
+        _logger.trace(__PRETTY_FUNCTION__);
+        // Show contents of _formData
+        _logger.debug("_formData contents");
+        for(auto it : _formData ) {
+            _logger.debug("\t" + it.first + ": " + it.second);
+        }
         _response.setStatus(HTTPResponse::HTTP_OK);
         _response.setContentType("text/html");
 
         ostream& out = _response.send();
 
-        out << "<html>" << endl;
-        out << headContent;
-        out << "<body>" << endl;
+        add(new TextContent("/body", "</body>", *this));
+        add(new TextContent("/html", "</html>", *this));
 
         for(auto content: _content) {
-            //out << *content;
             content->write(out);
         }
-        out << "</body>" << "</html>" << endl;
     }
 
     void Page::add(PageContent* content)
