@@ -27,3 +27,26 @@ I'm allowing the web server running on the same machine to serve them. I will
 probably do that for most static files. 
 
 ---
+
+### jclchat.ini
+When the chat server starts, it reads from a file called *jclchat.ini*. 
+
+Here is my basic file
+```
+[Application]
+    logger = jclchat
+
+[MySql]
+    host = localhost
+    port = 3306
+    database = jcl
+    user = jcl
+    password = Secr3t
+    compress = true
+    auto-reconnect = true
+
+[web]
+    host = jclchat.com
+    port = 9090
+    base = /home/cenicol/CLionProjects/jclchat/src
+```
