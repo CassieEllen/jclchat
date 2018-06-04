@@ -24,6 +24,7 @@
 #include <JclModel/Model.hpp>
 
 #include <Poco/Util/ServerApplication.h>
+#include <Poco/URI.h>
 #include <string>
 
 namespace jcl {
@@ -37,9 +38,19 @@ namespace jcl {
     protected:
         int main(const std::vector<std::string> &);
         void initialize(Application& self);
-        std::string getWebPath();
+
+        /// @brief Gets the web root as specified in the config file.
+        /// [web]
+        ///     base = /path/to/web/base
+        /// @return the base path to retrieve web files from.
+        std::string getWebPath() const;
+
+        const Poco::URI& getHttpPath() const;
+        const Poco::URI& getPocoPath() const;
 
         Model& _model;
+        Poco::URI _httpPath;
+        Poco::URI _pocoPath;
     };
 
 }
