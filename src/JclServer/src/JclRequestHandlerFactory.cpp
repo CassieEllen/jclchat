@@ -15,55 +15,76 @@
 
 #include <JclModel/Model.hpp>
 
-//#include <HtmlPages/IndexHandler.h>
+#if 0
 #include <HtmlPages/WelcomeHandler.h>
 #include <HtmlPages/UnknownHandler.h>
 #include <HtmlPages/VerifyHandler.h>
+#endif
 
 #include <iostream>
 #include <memory>
 #include <regex>
+#include <sstream>
+
+#include <boost/filesystem.hpp>
 
 #include "Poco/URI.h"
-#include "Poco/Path.h"
 
+#include <Poco/Logger.h>
 #include "Poco/Net/HTMLForm.h"
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Net/HTTPServerRequest.h>
 
 #include "Poco/MD5Engine.h"
 
-using namespace Poco::Net;
-using namespace std;
-
-
 namespace jcl {
+
+    using namespace Poco::Net;
+    using namespace std;
+    using namespace boost::filesystem;
 
     JclRequestHandlerFactory::JclRequestHandlerFactory(jcl::Model& model)
             : _model(model)
+        , _logger(Poco::Logger::get("Page"))
     {
-        cout << __PRETTY_FUNCTION__ << endl;
+        _logger.trace(__PRETTY_FUNCTION__);
+        _logger.setLevel("trace");
     }
 
     RequestType JclRequestHandlerFactory::getAction(const HTTPServerRequest& request) const {
         Poco::URI uri{request.getURI()};
-        Poco::Path path{uri.getPath()};
-        string req{path.directory(0)};
+        path path(uri.getPath());
+        const string &req{ path.string() };
 
-        cout << "URI: " << uri.toString() << endl;
-        cout << "path: " << uri.getPath() << endl;
-        cout << "request: " << req << endl;
+        _logger.information("URI: " + uri.toString());
+        _logger.information("path: " + uri.getPath());
+        _logger.information("request: " + req);
 
-        if (req.empty()) {
+        if ( req == "/" ) {
             return RequestType::rtIndex;
         }
 
-        static std::regex iconPattern(".*\\.ico$");
-        bool icon = regex_match(path.toString(), iconPattern);
-        if (icon) {
-            cout << "Icon File" << endl;
-            return RequestType::rtFile;
+        static std::regex extPattern(R"msg(.+\.([a-z]+))msg");
+        smatch sm;
+        bool extFound = regex_match(path.string(), sm, extPattern);
+        string extension;
+        if(extFound && (2 == sm.size())) {
+            _logger.information(path.string());
+            ostringstream oss;
+            oss << sm.size() << " matches found";
+            _logger.information(oss.str());
+            for( const auto & it : sm) {
+                _logger.information(it);
+            }
+            extension = sm[1];
+            _logger.information("extension: " + extension);
+            set<string> fileExtensions {"css", "js", "ico"};
+            if (fileExtensions.count(extension)) {
+                return RequestType::rtFile;
+            }
         }
+        return RequestType::rtUnknown;
+
 
         if (req == "login") {
             return RequestType::rtLogin;
@@ -80,27 +101,20 @@ namespace jcl {
 
     HTTPRequestHandler* JclRequestHandlerFactory::getActionHandler(const HTTPServerRequest& request, RequestType action) const
     {
-        switch(action) {            cout << "Returning default action login" << endl;
-
+        switch(action) {
             case RequestType::rtIndex:
                 return new WelcomeRequestHandler;
-                break;
             case RequestType::rtLogin:
                 return new LoginRequestHandler();
-                break;
             case RequestType::rtFile:
                 return new FileRequestHandler;
-                break;
             case RequestType::rtRegister:
                 return new RegisterRequestHandler;
-                break;
             case RequestType::rtVerify:
                 return new VerifyRequestHandler;
-                break;
             case RequestType::rtUnknown:
             default:
                 return new UnknownRequestHandler;
-                break;
         }
 
 #if 0
@@ -115,8 +129,6 @@ namespace jcl {
         }
 #endif
 
-
-        //return new UnknownHandler();
         return new JclRequestHandler();
     }
 
@@ -134,17 +146,17 @@ namespace jcl {
 
     HTTPRequestHandler* JclRequestHandlerFactory::createRequestHandler(const HTTPServerRequest& request)
     {
-        cout << "\n--------------------------------------------------" << endl;
-        cout << "\n--------------------------------------------------" << endl;
-        //cout << __PRETTY_FUNCTION__ << endl;
+        _logger.trace(__PRETTY_FUNCTION__);
+        _logger.information("--------------------------------------------------");
+        _logger.information("--------------------------------------------------");
 
         // Display header records
-        cout << "Header Records:" << endl;
+        _logger.information("Header Records:");
         for(auto it : request) {
-            cout << "\t" << it.first << ": " << it.second << endl;
+            _logger.information("\t" + it.first + ": " + it.second);
         }
 
-        cout << "method: " << request.getMethod() << endl;
+        _logger.information("\tmethod: " + request.getMethod() );
 
         auto action = getAction(request);
         return getActionHandler(request, action);
