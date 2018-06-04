@@ -1,9 +1,19 @@
 # Define library. Only source files here!
 project(libUtil VERSION 0.1 LANGUAGES CXX)
 
+# Locate all source files
+#
+file(GLOB_RECURSE UtilSources
+  RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+  "*.cpp" "*.hpp")
 
+message("\nUtilSources: ${UtilSources}\n")
+
+# Define Util Library
+#
 add_library(Util
-  src/Util.cpp)
+        ${UtilSources}
+        )
 
 
 # Define headers for this library. PUBLIC headers are used for
@@ -23,7 +33,9 @@ target_compile_features(Util
 
   
 # Depend on a library that we defined in the top-level file
-target_link_libraries(Util)
+target_link_libraries(Util
+        poco-net
+        )
 
 # 'make install' to the correct locations (provided by GNUInstallDirs).
 install(TARGETS Util EXPORT UtilConfig
