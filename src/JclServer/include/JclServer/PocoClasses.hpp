@@ -22,11 +22,11 @@
 #define PocoClasses_INCLUDED
 
 namespace Poco {
-    namespace Net {
-
+    class Logger;
+    namespace Net{
+        class HTTPRequestHandler;
         class HTTPServerRequest;
         class HTTPServerResponse;
-
     }
 }
 
