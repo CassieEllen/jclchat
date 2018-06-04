@@ -23,7 +23,7 @@
 
 #include <Poco/Net/NameValueCollection.h>
 
-#include <memory>
+//#include <memory>
 
 namespace jcl {
 
