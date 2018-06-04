@@ -25,36 +25,23 @@
 #include <JclServer/FooterContent.hpp>
 #include <JclServer/TextContent.hpp>
 
-#include <Poco/Net/HTMLForm.h>
-#include <Poco/Net/HTTPServerRequest.h>
-#include <Poco/Net/HTTPServerResponse.h>
-#include <Poco/Util/OptionException.h>
-#include <Poco/Net/NameValueCollection.h>
-
 #include <iostream>
-
 
 namespace jcl {
     using namespace std;
     using namespace Poco::Net;
-    using Poco::Util::OptionException;
-    using Poco::Util::MissingArgumentException;
-    using Poco::Util::UnexpectedArgumentException;
 
-
-    WelcomeContent::WelcomeContent(Page& page)
-            : PageContent("Welcome", page)
-    {
+    WelcomeContent::WelcomeContent(Page &page)
+            : PageContent("Welcome", page) {
     }
 
-    std::ostream& WelcomeContent::write(std::ostream& os) const {
-        auto data = _page.getFormData();
+    std::ostream &WelcomeContent::write(std::ostream &os) const {
+        auto &data = _page.getFormData();
 
-        string title = data.get("page.title","Welcome");
+        string title = data.get("page.title", "Welcome");
         os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
-        os << "<h1>" << title << "</h1>" << endl;
 
-          os << R"msgx(
+        os << R"msgx(
 <p>Welcome Content</p>
 <p><a href="login">login</a> or <a href="register">register</a>.</p>
         )msgx" << endl;
@@ -69,42 +56,25 @@ namespace jcl {
         _logger.trace(__PRETTY_FUNCTION__);
     }
 
-    void WelcomeRequestHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response)
-    {
+    void WelcomeRequestHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response) {
         _logger.trace(__PRETTY_FUNCTION__);
 
         write(request, response);
     }
 
-    void WelcomeRequestHandler::write(HTTPServerRequest &request, HTTPServerResponse &response)
-    {
+    void WelcomeRequestHandler::write(HTTPServerRequest &request, HTTPServerResponse &response) {
         _logger.trace(__PRETTY_FUNCTION__);
 
         Page page("Welcome", request, response);
-        auto data = page.getFormData();
+        auto &data = page.getFormData();
         data.set("page.title", "Welcome");
-
-#if 0
-        TextContent* text1 = new TextContent(page);
-        text1->setText("<p>Some Text</p>");
-
-        TextContent* text2 = new TextContent(page);
-        text2->setText("<p>More Text</p>");
-
-        TextContent* text3 = new TextContent(page);
-        text3->setText("<p>End Text</p>");
-#endif
+        data.set("page.h1", "Welcome to Chat");
 
         page.add(new HeaderContent(page));
         page.add(new WelcomeContent(page));
         page.add(new FooterContent(page));
-#if 0
-        page.addAfter("Header", text1);
-        page.addAfter("Welcome", text2);
-        page.addAfter("Footer", text3);
-#endif
-        page.send();
 
+        page.send();
     }
 
 }
