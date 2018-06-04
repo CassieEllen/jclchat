@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Ignore dolphin files
+.directory
+
 # emacs temp files
 *.*~
 .dir-locals.el
