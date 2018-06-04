@@ -22,14 +22,7 @@
 #define JclRequestHandlerFactory_h__
 
 #include <Poco/Net/HTTPRequestHandlerFactory.h>
-
-namespace Poco {
-    namespace Net{
-        class HTTPRequestHandler;
-        class HTTPServerRequest;
-
-    }
-}
+#include <JclServer/PocoClasses.hpp>
 
 namespace jcl {
 
@@ -41,7 +34,8 @@ namespace jcl {
         rtIndex,
         rtLogin,
         rtFile,
-        rtRegister
+        rtRegister,
+        rtVerify
     };
 
     ///
@@ -64,6 +58,7 @@ namespace jcl {
         RequestType getAction(const Poco::Net::HTTPServerRequest& request) const;
 
         jcl::Model& _model;
+        Poco::Logger& _logger;
     };
 
 
