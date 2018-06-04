@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="0d4aedf3-70d8-4f3d-8339-328027bf7917" name="jclchat.com" url="http://jclchat.com">
-        <fileTransfer host="jclchat.com" port="22" accessType="SFTP" authAgent="true">
+        <fileTransfer host="jclchat.com" port="22" rootFolder="/home/cenicol/chat" accessType="SFTP" authAgent="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
