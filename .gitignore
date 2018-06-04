@@ -37,3 +37,9 @@
 
 # CLion directories
 */cmake-build-debug/*
+
+# Doxygen
+docs/html/*
+
+# Build files
+build/*
