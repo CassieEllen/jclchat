@@ -23,34 +23,39 @@
 
 #include <JclServer/PageContent.hpp>
 
+#include <JclServer/Types.hpp>
+
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Logger.h>
 
 namespace jcl {
 
+    /// @brief Welcome Page Content
+    ///
     class WelcomeContent : public PageContent
     {
     public:
         explicit WelcomeContent(Page& page);
-        ~WelcomeContent() override = default;
+        virtual ~WelcomeContent() override = default;
 
-        std::ostream& write(std::ostream& os) const;
+        std::ostream& write(std::ostream& os) const override;
     };
 
+    /// @brief Welcome Page Request Handler
     class WelcomeRequestHandler : public Poco::Net::HTTPRequestHandler
     {
     public:
         WelcomeRequestHandler();
         virtual ~WelcomeRequestHandler() = default;
-        virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
-        void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
-
-    private:
         WelcomeRequestHandler(const WelcomeRequestHandler&) = delete;
         WelcomeRequestHandler& operator=(const WelcomeRequestHandler&) = delete;
 
+        void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp) override;
+        void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+
+    private:
+
         Poco::Logger& _logger;
-        NameValueCollection _formData;
     };
 
 }

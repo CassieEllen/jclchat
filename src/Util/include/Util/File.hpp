@@ -1,4 +1,4 @@
-// RegisterContent.hpp
+// File.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -18,22 +18,35 @@
 //
 // SPDX-License-Identifier:	GPL-3.0
 
-#ifndef RegisterContent_INCLUDED
-#define RegisterContent_INCLUDED
+#ifndef File_INCLUDED
+#define File_INCLUDED
 
-#include <JclServer/PageContent.hpp>
+#include <map>
+#include <string>
 
 namespace jcl {
 
-    class RegisterContent : public PageContent {
+    class File {
     public:
-        RegisterContent(Page& page);
+        /// @brief Get the file's mime type
+        /// @param extension file extensions
+        /// @return true if the extension is a mime type.
+        static bool hasMimeType(const std::string &extension);
 
-        virtual ~RegisterContent() = default;
+        /// @brief Get the file's mime type
+        /// @param extension file extensions
+        /// @return !empty() if the mime type was found
+        static std::string getMimeType(const std::string &extension);
 
-        virtual std::ostream &write(std::ostream &os) const;
-        virtual bool verify() const;
+        /// @brief Check that the file exists
+        /// @param path The full path to the file
+        /// @return true if the file was found
+        static bool exists(const std::string &path);
+
+        /// @brief
+        static std::map<std::string, std::string> _mimeMap;
+
     };
 
 }
-#endif // RegisterContent_INCLUDED
+#endif // File_INCLUDED

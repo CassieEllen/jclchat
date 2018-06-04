@@ -1,4 +1,4 @@
-// RegisterContent.hpp
+// VerifyContent.cpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -18,22 +18,28 @@
 //
 // SPDX-License-Identifier:	GPL-3.0
 
-#ifndef RegisterContent_INCLUDED
-#define RegisterContent_INCLUDED
+#include <JclServer/VerifyContent.hpp>
 
-#include <JclServer/PageContent.hpp>
+#include <iostream>
 
 namespace jcl {
+    using namespace std;
 
-    class RegisterContent : public PageContent {
-    public:
-        RegisterContent(Page& page);
+    VerifyContent::VerifyContent(Page& page)
+        : PageContent("Verify", page)
+    {
+    }
 
-        virtual ~RegisterContent() = default;
-
-        virtual std::ostream &write(std::ostream &os) const;
-        virtual bool verify() const;
-    };
-
+    std::ostream& VerifyContent::write(std::ostream& os) const
+    {
+        os << R"msg(
+<p>Verify Content</p>
+<p>You have been emailed a verify code. Please enter it here</p>
+<form action="profile" method="post">
+<p><input type="text" name="code" size="6" maxlength="6"><input type="submit" name="check" value="Check"></p>
+</form>
+<p>Or <a href="verify">Resend</a> the code.</p>
+         )msg";
+    }
 }
-#endif // RegisterContent_INCLUDED
+    

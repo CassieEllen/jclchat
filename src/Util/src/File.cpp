@@ -1,4 +1,4 @@
-// RegisterContent.hpp
+// File.cpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -18,22 +18,33 @@
 //
 // SPDX-License-Identifier:	GPL-3.0
 
-#ifndef RegisterContent_INCLUDED
-#define RegisterContent_INCLUDED
-
-#include <JclServer/PageContent.hpp>
+#include <Util/File.hpp>
 
 namespace jcl {
+    using namespace std;
 
-    class RegisterContent : public PageContent {
-    public:
-        RegisterContent(Page& page);
-
-        virtual ~RegisterContent() = default;
-
-        virtual std::ostream &write(std::ostream &os) const;
-        virtual bool verify() const;
+#if 0
+  File::_mimeMap =
+    {
+      {"css", "text/css"},
+      {"ico", "image/x-icon"},
+      {"js",  "text/javascript"}
     };
+#endif
 
+  bool File::hasMimeType(const string& extension)
+    {
+        File::_mimeMap.end()  !=  File::_mimeMap.find(extension);
+    }
+
+    string File::getMimeType(const string& extension)
+    {
+      return string();
+    }
+
+    bool File::exists(const string& path)
+    {
+        return false;
+    }
 }
-#endif // RegisterContent_INCLUDED
+    

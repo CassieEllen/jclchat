@@ -26,7 +26,6 @@
 #include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/File.h>
 #include "Poco/URI.h"
-#include "Poco/Path.h"
 #include <Poco/Exception.h>
 
 
@@ -43,7 +42,7 @@ namespace jcl {
     using namespace boost::filesystem;
 
     FileRequestHandler::FileRequestHandler()
-        : _logger(Poco::Logger::get("FileRequestHandler"))
+        : _logger(Poco::Logger::get("HTTPRequestHandler.FileRequestHandler"))
         , _path()
         , _contentType()
     {
@@ -57,32 +56,77 @@ namespace jcl {
 
         try {
             Poco::URI uri {request.getURI()};
-            cout << "uri: " << uri.toString() << endl;
+            _logger.information("uri: " + uri.toString() );
             auto filePath = uri.getPath().substr(1);
-            cout << "filePath: " << filePath << endl;
+
 
             getContentType(filePath);
-            _logger.trace("after getContentType()");
 
-            cout << "current_path(): " << current_path() << endl;
+
             _path = current_path();
-            cout << "_path: " << _path << endl;
             _path /= filePath;
-            cout << "_path: " << _path << endl;
 
+#if 0
+            string cmd { "ls -l " };
+            cmd.append( _path.string() );
+            system(cmd.c_str());
+#endif
 
             if( ! exists(_path) ) {
-                cout << Poco::Util::Application::instance().commandPath() << endl;
-                throw Poco::Exception("File not found: " + _path.string() );
+                //cout << Poco::Util::Application::instance().commandPath() << endl;
+                throw Poco::FileNotFoundException("File not found: " + _path.string() );
             }
+
             _logger.trace("File found: " + _path.string() );
             write(request, response);
+            return;
 
-        } catch (const Poco::Exception& e) {
+        } catch (const Poco::FileNotFoundException& e) {
+            _logger.error(__FILE__ + __LINE__);
             _logger.error("Exception: " + e.message());
+            _logger.error(e.className());
+        } catch (const Poco::Exception& e) {
+            _logger.error(__FILE__ + __LINE__);
+            _logger.error("Exception: " + e.message());
+            _logger.error(e.className());
         }
         
         write(request, response);
+    }
+
+    void FileRequestHandler::getContentType(const path& path)
+    {
+        _logger.trace(__PRETTY_FUNCTION__);
+        regex extPattern(".*\\.(.*)$");
+        smatch m;
+        bool found = regex_match(path.string(), m, extPattern);
+        if( ! found) {
+            throw Poco::Exception("pattern not found", __FILE__, __LINE__);
+        }
+        if( m.size() != 2 ) {
+#if 0
+            cout << "size: " << m.size() << endl;
+            for(auto i : m) {
+                cout << "\t" << i.str() << endl;
+            }
+#endif
+            throw Poco::Exception("pattern not found - count not 2", __FILE__, __LINE__);
+        }
+        string ext = m[1].str();
+        _logger.information("ext: " + ext);
+
+        map<string,string> contentMap {
+                {"css", "text/css"},
+                {"ico", "image/x-icon"},
+                {"js", "text/javascript"}
+        };
+        auto mit = contentMap.find(ext);
+        if(mit == contentMap.end()) {
+            _logger.error("Content type not found.");
+            throw Poco::Exception("Content-type not found for extension: " + ext, __FILE__, __LINE__);
+        }
+        _contentType = mit->second;
+        _logger.information("_contentType: "  +_contentType);
     }
 
     void FileRequestHandler::write(HTTPServerRequest &request, HTTPServerResponse &response)
@@ -94,7 +138,8 @@ namespace jcl {
             response.setStatus(HTTPResponse::HTTP_NOT_FOUND);
             response.setContentType("text/plain");
             ostream& out = response.send();
-            out << "Not Implemented";
+            out << "Not Implemented: " << _contentType << endl;
+            out << "\"" << _path << "\"" << endl;
             out.flush();
             return;
         }
@@ -102,42 +147,11 @@ namespace jcl {
         try {
             _logger.trace("Send file:" + _path.string());
             response.sendFile(_path.string(), _contentType);
-            ifstream is(_path.string(), std::ios::binary);
-        } catch(Poco::Exception& e) {
+        } catch(const Poco::Exception& e) {
+            _logger.debug(e.className());
             _logger.debug(e.message());
         }
 
-    }
-
-    void FileRequestHandler::getContentType(const path& path)
-    {
-        _logger.trace(__PRETTY_FUNCTION__);
-        regex extPattern(".*\\.(.*)$");
-        smatch m;
-        cout << "path: " << path << endl;
-        bool found = regex_match(path.string(), m, extPattern);
-        if( ! found) {
-            throw Poco::Exception("pattern not found");
-        }
-        if( m.size() != 2 ) {
-            cout << "size: " << m.size() << endl;
-            for(auto i : m) {
-                cout << "\t" << i.str() << endl;
-            }
-            throw Poco::Exception("pattern not found - count not 2");
-        }
-        string ext = m[1].str();
-        cout << "ext: " << ext << endl;
-        
-        map<string,string> contentMap { {"ico", "image/x-icon"} };
-        auto mit = contentMap.find(ext);
-        if(mit == contentMap.end()) {
-            cout << "Content type not found." << endl;
-            throw Poco::Exception("extension not found: " + ext);
-        }
-        _contentType = mit->second;
-        cout << "_contentType: "  <<_contentType << endl;
-        
     }
 
 }

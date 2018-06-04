@@ -19,6 +19,10 @@
 // SPDX-License-Identifier:	GPL-3.0
 
 #include <JclServer/RegisterContent.hpp>
+#include <JclServer/Page.hpp>
+#include <Util/HtmlTags.hpp>
+
+#include <Poco/Net/HTTPServerRequest.h>
 
 #include <iostream>
 
@@ -31,21 +35,27 @@ namespace jcl {
 
     std::ostream& RegisterContent::write(std::ostream& os) const
     {
-        os <<
-R"msgx(
-<h1>Home</h1>
-)msgx"
-           << R"msgx(
-<form action="/Register" method="post" enctype="text/plain">
+        os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
+        if(_page.getRequest().has("register.error")) {
+            string error = _page.getRequest().get("register.error");
+            os << R"msg(<span class="error">)msg" << error << "</span>";
+        }
+        os << R"msgx(
+<form action="/register" name="register" method="post" enctype="text/plain">
 <table>
 <tr><td>Email:    </td><td><input type="text" name="username" size="16" maxlength="32"></td></tr>
 <tr><td>Password: </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
-<tr><td>Repeat:   </td><td><input type="text" name="password" size="16" maxlength="32"></td></tr>
+<tr><td>Repeat:   </td><td><input type="text" name="repeat"   size="16" maxlength="32"></td></tr>
+<tr><td>Handle:   </td><td><input type="text" name="handle"   size="16" maxlength="32"></td></tr>
 <tr><td>          </td><td><input type="submit" name="Register" value="Register"></td></tr>
 </table>
 </form>
 )msgx" << endl;
 
         return os;
+    }
+
+    bool RegisterContent::verify() const {
+        return false;
     }
 }

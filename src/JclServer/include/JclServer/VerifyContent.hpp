@@ -1,4 +1,4 @@
-// RegisterContent.hpp
+// VerifyContent.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2018 Cassie E Nicol
@@ -18,22 +18,22 @@
 //
 // SPDX-License-Identifier:	GPL-3.0
 
-#ifndef RegisterContent_INCLUDED
-#define RegisterContent_INCLUDED
+#ifndef VerifyContent_INCLUDED
+#define VerifyContent_INCLUDED
 
 #include <JclServer/PageContent.hpp>
 
 namespace jcl {
 
-    class RegisterContent : public PageContent {
+    class VerifyContent : public PageContent
+    {
     public:
-        RegisterContent(Page& page);
-
-        virtual ~RegisterContent() = default;
-
-        virtual std::ostream &write(std::ostream &os) const;
-        virtual bool verify() const;
+        VerifyContent(Page& page);
+        virtual ~VerifyContent() = default;
+        std::ostream& write(std::ostream& os) const;
     };
 
 }
-#endif // RegisterContent_INCLUDED
+#endif // VerifyContent_INCLUDED
+
+          

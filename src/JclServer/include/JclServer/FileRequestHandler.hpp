@@ -36,7 +36,7 @@ public:
     FileRequestHandler(const FileRequestHandler&) = delete;
     FileRequestHandler& operator=(const FileRequestHandler&) = delete;
 
-    virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+    void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp) override ;
     void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
     
  private:
