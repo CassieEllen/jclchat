@@ -38,13 +38,18 @@ public:
 
     void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp) override ;
     void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
-    
+    void writeFileDoesNotExist(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+    void writeException(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+
  private:
     void getContentType(const boost::filesystem::path& path);
+
+    void displayHeaderRecords(const Poco::Net::HTTPServerResponse &response) const;
 
     Poco::Logger& _logger;
     boost::filesystem::path _path;
     std::string _contentType;
+
 };
 
 }
