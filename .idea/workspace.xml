@@ -5,9 +5,7 @@
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="jclchat" targetName="JclServer" />
-      <config projectName="jclchat" targetName="JclModel" />
-      <config projectName="jclchat" targetName="Util" />
+      <config projectName="jclchat" targetName="jclchat" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -17,27 +15,64 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2062ac8c-9702-4dd5-985c-40fbbf33c3f2" name="Default" comment="Changed file handling for static files.&#10;Changed use of cout/cerr to using the logger.">
+      <change afterPath="$PROJECT_DIR$/src/CreateDB/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CreateDB/src/CreateDB.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CreateDB/src/CreateDB.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JclModel/include/JclModel/DbConnection.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JclModel/src/DbConnection.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JclServer/test/PageTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JclChat/config/JclChat.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclChat/config/JclChat.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HtmlPages/src/RegisterHandler.cpsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/HtmlPages/src/RegisterHandler.cpsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclChat/src/chat.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclChat/src/chat.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclModel/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclModel/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclModel/include/JclModel/Model.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclModel/include/JclModel/Model.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclModel/include/JclModel/User.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclModel/include/JclModel/User.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclModel/src/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclModel/src/Model.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclModel/src/User.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclModel/src/User.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/JclRequestHandlerFactory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/JclRequestHandlerFactory.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/FileRequestHandler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/FileRequestHandler.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/FooterContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/FooterContent.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/HeadContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/HeadContent.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/HeaderContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/HeaderContent.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/LoginContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/LoginContent.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/LoginRequestHandler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/LoginRequestHandler.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/Page.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/Page.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/PageContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/PageContent.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/PocoClasses.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/PocoClasses.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterContent.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterRequestHandler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterRequestHandler.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/Types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/Types.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/StandardPage.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/TextContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/TextContent.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/UnknownRequestHandler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/UnknownRequestHandler.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/VerifyContent.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/VerifyContent.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/include/JclServer/WelcomeRequestHandler.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/include/JclServer/WelcomeRequestHandler.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/FileRequestHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/FileRequestHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/FooterContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/FooterContent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/HeadContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/HeadContent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/HeaderContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/HeaderContent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/JclRequestHandlerFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/JclRequestHandlerFactory.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/LoginContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/LoginContent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclServer/src/LoginRequestHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/LoginRequestHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/Page.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/Page.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/PageContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/PageContent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/RegisterContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/RegisterContent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclServer/src/RegisterRequestHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/RegisterRequestHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/StandardPage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/TextContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/TextContent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JclServer/src/UnknownRequestHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/UnknownRequestHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/VerifyContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/VerifyContent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/Welcome.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/Welcome.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JclServer/src/WelcomeRequestHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/JclServer/src/WelcomeRequestHandler.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/src/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/src/Util/CMakeFiles/" />
     <ignored path="$PROJECT_DIR$/src/JclServer/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,43 +83,179 @@
     <option name="printScope" value="1" />
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1333560467">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cpp" value="1" />
+          <entry key="hpp" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="ObjectiveC" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cpp" value="52" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="ObjectiveC" value="52" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.cidr.testingFrameworks.usages" />
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file leaf-file-name="WelcomeRequestHandler.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/JclServer/src/WelcomeRequestHandler.cpp">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="41" column="63" lean-forward="true" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
+            <state relative-caret-position="164">
+              <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
               <folding>
-                <element signature="e#834#880#0" expanded="true" />
+                <element signature="e#863#903#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JclModel/include/JclModel/Model.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JclModel/src/DbConnection.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+              <folding>
+                <element signature="e#920#985#0" expanded="true" />
+                <element signature="e#1004#1264#0" expanded="true" />
+                <element signature="e#1283#1605#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JclModel/include/JclModel/DbConnection.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="54" selection-start-line="54" selection-end-line="54" />
+              <folding>
+                <element signature="e#1458#1496#0" expanded="true" />
+                <element signature="e#1527#1576#0" expanded="true" />
+                <element signature="e#1599#1643#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JclModel/src/Model.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="6" selection-start-line="20" selection-end-line="20" selection-end-column="29" />
+              <folding>
+                <element signature="e#818#847#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1605">
+              <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
+              <folding>
+                <element signature="e#825#862#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CreateDB/src/CreateDB.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Welcome</find>
-      <find>WelcomeContent</find>
-      <find>getFormData</find>
-      <find>WelcomeRequestHandler</find>
-      <find>Request</find>
-      <find>RegisterHandler</find>
-      <find>RequestType::index</find>
-      <find>Basic</find>
-      <find>Register</find>
-      <find>Unknown</find>
-      <find>RegisterRequestHandler</find>
-      <find>register</find>
-      <find>Login</find>
-      <find>_path</find>
       <find>web.base</find>
       <find>Exception</find>
       <find>cout</find>
       <find>matches</find>
       <find>req</find>
+      <find>path</find>
+      <find>logger</find>
+      <find>content</find>
+      <find>_logger</find>
+      <find>app.path</find>
+      <find>_appPath</find>
+      <find>_pInstance</find>
+      <find>__instance</find>
+      <find>instance</find>
+      <find>_instance</find>
+      <find>File not found</find>
+      <find>Header</find>
+      <find>getName</find>
+      <find>setPage</find>
+      <find>add</find>
+      <find>SharedPtr</find>
+      <find>const</find>
+      <find>page-&gt;</find>
+      <find>new</find>
+      <find>Host:</find>
+      <find>JclServerSources</find>
+      <find>getString()</find>
+      <find>name</find>
+      <find>setup</find>
+      <find>initialize</find>
     </findStrings>
     <replaceStrings>
       <replace>Welcome</replace>
@@ -96,6 +267,10 @@
       <replace>Standard</replace>
       <replace>Verify</replace>
       <replace>path</replace>
+      <replace>make_shared&lt;</replace>
+      <replace>page.</replace>
+      <replace>JclModelSources</replace>
+      <replace>getString(key)</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -109,57 +284,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/JclServer/src/BasicPage.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/StandardPage.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/StandardPage.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/LoginRequestHandler.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/LoginRequestHandler.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/Types.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/VerifyContent.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/VerifyRequestHandler.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/VerifyRequestHandler.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/VerifyContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/FooterContent.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/LoginContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/UnknownRequestHandler.hpp" />
-        <option value="$PROJECT_DIR$/src/Util/include/Util/HtmlTags.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/UnknownRequestHandler.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/FooterContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterContent.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/PageContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterRequestHandler.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/RegisterContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/RegisterRequestHandler.cpp" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp" />
+        <option value="$PROJECT_DIR$/Doxyfile" />
         <option value="$PROJECT_DIR$/src/JclChat/config/JclChat.ini" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp" />
-        <option value="$PROJECT_DIR$/src/JclChat/css/jclchat.css" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/TextContent.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/TextContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/Page.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/JclRequestHandlerFactory.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/PocoClasses.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterRequestHandler.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/FileRequestHandler.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/LoginContent.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/LoginContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/VerifyRequestHandler.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/VerifyContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/VerifyContent.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/WelcomeRequestHandler.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/FooterContent.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/FooterContent.hpp" />
         <option value="$PROJECT_DIR$/src/JclServer/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/JclChat/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/JclModel/include/JclModel/User.hpp" />
-        <option value="$PROJECT_DIR$/src/JclModel/src/User.cpp" />
-        <option value="$PROJECT_DIR$/src/Util/include/Util/File.hpp" />
-        <option value="$PROJECT_DIR$/src/Util/src/File.cpp" />
-        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/Util/src/HtmlTags.cpp" />
-        <option value="$PROJECT_DIR$/src/Util/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/Page.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/test/PageTest.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/RegisterRequestHandler.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/LoginRequestHandler.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/VerifyRequestHandler.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/PocoClasses.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/RegisterContent.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/UnknownRequestHandler.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/UnknownRequestHandler.hpp" />
+        <option value="$PROJECT_DIR$/src/JclChat/config/JclChat.ini.local" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/PageContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclChat/src/chat.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/PageContent.cpp" />
+        <option value="$PROJECT_DIR$/src/cmake-build-debug/JclChat/JclChat.ini" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/JclRequestHandlerFactory.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/FileRequestHandler.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/HeadContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/HeadContent.cpp" />
         <option value="$PROJECT_DIR$/src/JclServer/src/HeaderContent.cpp" />
         <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/HeaderContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/TextContent.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/TextContent.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/Page.cpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/Page.hpp" />
         <option value="$PROJECT_DIR$/src/JclServer/src/WelcomeRequestHandler.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/WelcomeRequestHandler.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/HeadContent.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/PageContent.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/FileRequestHandler.hpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/HeadContent.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/FileRequestHandler.cpp" />
-        <option value="$PROJECT_DIR$/src/JclServer/src/JclRequestHandlerFactory.cpp" />
+        <option value="$PROJECT_DIR$/src/CreateDB/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/JclModel/src/User.cpp" />
+        <option value="$PROJECT_DIR$/src/JclModel/include/JclModel/User.hpp" />
+        <option value="$PROJECT_DIR$/src/JclModel/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/JclModel/include/JclModel/DbDconnection.hpp" />
+        <option value="$PROJECT_DIR$/src/CreateDB/src/CreateDB.cpp" />
+        <option value="$PROJECT_DIR$/src/JclModel/src/DbConnection.cpp" />
+        <option value="$PROJECT_DIR$/src/JclModel/include/JclModel/DbConnection.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp" />
+        <option value="$PROJECT_DIR$/src/JclModel/src/Model.cpp" />
+        <option value="$PROJECT_DIR$/src/JclModel/include/JclModel/Model.hpp" />
+        <option value="$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp" />
       </list>
     </option>
   </component>
@@ -169,10 +344,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="454" />
-    <option name="width" value="1343" />
-    <option name="height" value="975" />
+    <option name="x" value="2011" />
+    <option name="width" value="1506" />
+    <option name="height" value="906" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -187,17 +363,6 @@
               <item name="libJclServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="libJclServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="JclServer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="libJclServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="JclServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -205,17 +370,18 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/cenicol/CLionProjects/jclchat/src/JclServer/src/JclServerApp.cpp&#10;templates&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Build/poco-1.7.9-all/Net/src/HTTPServerResponseImpl.cpp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -230,20 +396,37 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.JclChat">
-    <configuration name="JclChat" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/src/cmake-build-debug/JclChat/JclChat" EXPLICIT_BUILD_TARGET_NAME="all">
-      <method>
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="false" />
+    <configuration name="Page_test_suite" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jclchat" TARGET_NAME="JclServerTestLib" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jclchat" RUN_TARGET_NAME="JclServerTestLib" TEST_CLASS="Page_test_suite" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JclModel" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jclchat" TARGET_NAME="JclModel" CONFIG_NAME="Debug" />
-    <configuration name="JclServer" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jclchat" TARGET_NAME="JclServer" CONFIG_NAME="Debug" />
-    <configuration name="Util" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jclchat" TARGET_NAME="Util" CONFIG_NAME="Debug" />
+    <configuration name="CreateDB" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--optionval=testing --configfile=../JclChat/JclChat.ini oops" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jclchat" TARGET_NAME="CreateDB" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jclchat" RUN_TARGET_NAME="CreateDB">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JclChat" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jclchat" RUN_TARGET_NAME="JclChat" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="jclchat" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jclchat" TARGET_NAME="jclchat" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jclchat" RUN_TARGET_NAME="jclchat">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="Application.CreateDB" />
       <item itemvalue="Application.JclChat" />
-      <item itemvalue="Application.JclModel" />
-      <item itemvalue="Application.JclServer" />
-      <item itemvalue="Application.Util" />
+      <item itemvalue="Application.jclchat" />
+      <item itemvalue="Boost.Test.Page_test_suite" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Boost.Test.Page_test_suite" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -269,6 +452,22 @@
       <workItem from="1527252075918" duration="17298000" />
       <workItem from="1528123426074" duration="736000" />
       <workItem from="1528126911499" duration="1634000" />
+      <workItem from="1528128935894" duration="25841000" />
+      <workItem from="1528296963723" duration="9050000" />
+      <workItem from="1528310825764" duration="79000" />
+      <workItem from="1529517856561" duration="1623000" />
+      <workItem from="1529584238215" duration="41075000" />
+      <workItem from="1530250234118" duration="20819000" />
+      <workItem from="1531318399611" duration="2039000" />
+      <workItem from="1531470149313" duration="30954000" />
+      <workItem from="1532535713924" duration="1287000" />
+      <workItem from="1533292606790" duration="164000" />
+      <workItem from="1534877962711" duration="69000" />
+      <workItem from="1534878057801" duration="599000" />
+      <workItem from="1537288451300" duration="4120000" />
+      <workItem from="1537521788334" duration="1366000" />
+      <workItem from="1537544574069" duration="1291000" />
+      <workItem from="1537593811421" duration="110000" />
     </task>
     <task id="LOCAL-00001" summary="`Updating about where to put static files. Specifically, I am storing the jQuery.js file on the apache2 server instead of serving it from the poco server.`">
       <created>1526004388730</created>
@@ -298,35 +497,59 @@
       <option name="project" value="LOCAL" />
       <updated>1528128393344</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated to use short paths">
+      <created>1528141120582</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1528141120582</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Issues with JclServerApp">
+      <created>1528307360485</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1528307360485</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Page_test_suite - 2018.06.26 at 05h 54m 20s.xml">
+      <configuration name="Page_test_suite" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Page_test_suite - 2018.06.26 at 05h 54m 24s.xml">
+      <configuration name="Page_test_suite" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167028000" />
+    <option name="totallyTimeSpent" value="307524000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="454" y="0" width="1343" height="975" extended-state="0" />
+    <frame x="2011" y="0" width="1506" height="906" extended-state="0" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.25512528" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.36788154" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32915717" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30523917" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32850778" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.3299566" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2764045" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.32912722" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32962137" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20798898" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4403153" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32928064" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30401036" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.43596378" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.24838293" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275649" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32915717" />
+      <window_info anchor="bottom" id="CMake" order="11" visible="true" weight="0.31047866" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32912722" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.3299566" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,376 +563,344 @@
     <MESSAGE value="Ignoring files generated by build and doxygen" />
     <MESSAGE value="Changed file handling for static files.&#10;Changed use of cout/cerr to using the logger." />
     <MESSAGE value="Cleanup and changed for changes in PageContent" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup and changed for changes in PageContent" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="14" />
-    </breakpoint-manager>
+    <MESSAGE value="Updated to use short paths" />
+    <MESSAGE value="Issues with JclServerApp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Issues with JclServerApp" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/include/Poco/Logger.h">
+    <entry file="file:///usr/include/boost/test/unit_test_suite.hpp" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/src/JclServer/test/PageTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="504" selection-start-line="504" selection-end-line="504" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/UnknownRequestHandler.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/Poco/ListMap.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/Poco/Net/NameValueCollection.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Util/include/Util/HtmlTags.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="38" column="73" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/LoginContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/FooterContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterContent.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/RegisterRequestHandler.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="286">
-            <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/RegisterRequestHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Build/poco-1.7.9-all/Util/src/AbstractConfiguration.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="47" column="33" lean-forward="true" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Build/poco-1.7.9-all/Util/src/Application.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="320" column="34" lean-forward="true" selection-start-line="320" selection-start-column="34" selection-end-line="320" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/Poco/URI.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3211">
-          <caret line="329" selection-start-line="329" selection-end-line="329" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/Poco/Util/Application.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="396" selection-start-line="396" selection-end-line="396" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/RegisterContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/TextContent.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/TextContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/PocoClasses.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/JclRequestHandlerFactory.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclChat/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclModel/include/JclModel/User.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclModel/src/User.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HtmlPages/src/JclPageRequestHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Util/include/Util/File.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Util/src/File.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blah.txt" />
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-273">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Util/src/HtmlTags.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/Page.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/Page.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/Types.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/HeaderContent.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/HeaderContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="40" column="46" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+        <state relative-caret-position="169">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/WelcomeRequestHandler.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
+        <state relative-caret-position="298">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Util/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/RegisterRequestHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/PageContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/HeadContent.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Build/poco-1.7.9-all/Net/src/HTTPServerResponseImpl.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1443">
-          <caret line="111" column="10" selection-start-line="111" selection-start-column="4" selection-end-line="111" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/UnknownRequestHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-548">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/FileRequestHandler.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="46" column="28" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/PageContent.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/HeadContent.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-          <folding>
-            <element signature="e#832#868#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclServer/src/FileRequestHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="100" column="14" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
-          <folding>
-            <element signature="e#831#874#0" expanded="true" />
-            <element signature="e#2065#2164#0" expanded="true" />
-            <element signature="e#3382#3512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclChat/css/jclchat.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JclChat/config/JclChat.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="910">
+          <caret line="70" column="47" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JclServer/src/VerifyRequestHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23" />
+        <state relative-caret-position="806">
+          <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
+        </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/PocoClasses.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/FooterContent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/shared_ptr_base.h" />
+    <entry file="file:///usr/include/c++/5/bits/shared_ptr.h" />
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/UnknownRequestHandler.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/RegisterContent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/UnknownRequestHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/PageContent.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/PageContent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="40" column="3" selection-start-line="40" selection-end-line="41" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/JclServerApp.md" />
     <entry file="file://$PROJECT_DIR$/src/JclServer/src/JclRequestHandlerFactory.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="247">
+          <caret line="19" column="31" selection-start-line="19" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/FileRequestHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/HeadContent.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/HeadContent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="53" column="62" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/HeaderContent.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/HeaderContent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/TextContent.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="728">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/LoginRequestHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2132">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/Page.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1235">
+          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/Page.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="910">
+          <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JclServer/src/WelcomeRequestHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="41" column="63" lean-forward="true" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
+        <state relative-caret-position="395">
+          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/Poco/Util/AbstractConfiguration.h" />
+    <entry file="file://$PROJECT_DIR$/src/JclChat/src/chat.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclChat/config/JclChat.ini.local">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="4" column="12" selection-start-line="4" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclChat/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CreateDB/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclModel/src/User.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclModel/include/JclModel/User.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmake-build-debug/JclChat/JclChat.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/TextContent.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Util/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-402" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="63" column="34" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/iosfwd" />
+    <entry file="file:///usr/local/include/Poco/Util/Application.h" />
+    <entry file="file://$PROJECT_DIR$/src/JclModel/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/include/JclServer/JclServerApp.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="50" column="66" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="66" />
           <folding>
-            <element signature="e#834#880#0" expanded="true" />
+            <element signature="e#863#903#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclModel/include/JclModel/Model.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclModel/src/DbConnection.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#920#985#0" expanded="true" />
+            <element signature="e#1004#1264#0" expanded="true" />
+            <element signature="e#1283#1605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclModel/include/JclModel/DbConnection.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="e#1458#1496#0" expanded="true" />
+            <element signature="e#1527#1576#0" expanded="true" />
+            <element signature="e#1599#1643#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclModel/src/Model.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="6" selection-start-line="20" selection-end-line="20" selection-end-column="29" />
+          <folding>
+            <element signature="e#818#847#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JclServer/src/JclServerApp.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1605">
+          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
+          <folding>
+            <element signature="e#825#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CreateDB/src/CreateDB.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
