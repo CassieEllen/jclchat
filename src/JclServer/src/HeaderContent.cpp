@@ -33,18 +33,23 @@ namespace jcl {
 
     HeaderContent::~HeaderContent()
     {
+        _logger.trace(__PRETTY_FUNCTION__);
     }
     
     ostream& HeaderContent::write(ostream& os) const
     {
-        auto& data = _page.getFormData();
-        auto h1 = data.get("page.h1", "page.h1");
+        auto& data = getData();
+        auto h1 = data.get("getPage.h1", "getPage.h1");
 
         os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
         os << "<h1>" << h1 << "</h1>" << endl
            << R"msg(<a href="\">Home</a>)msg"
            << "<hr>" << endl;
     }
-    
+
+    ostream& HeaderContent::write(ostream& os) {
+        return static_cast<const HeaderContent &>(*this).write(os);
+    }
+
 }
     
