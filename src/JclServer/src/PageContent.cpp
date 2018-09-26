@@ -20,33 +20,73 @@
 
 #include <JclServer/PageContent.hpp>
 
+#include <JclServer/Page.hpp>
+
+#include <Poco/Util/Application.h>
+
 #include <iostream>
 
+#include <Poco/Exception.h>
 
 namespace jcl {
     using namespace std;
+    using namespace Poco;
+    using Poco::Net::NameValueCollection;
 
-    PageContent::PageContent(const std::string& name, Page& page)
-        : _name(name)
-        , _page(page)
+    PageContent::PageContent(const string &name)
+            : _name(name)
+            , _logger(Poco::Logger::get("PageContent"))
+            , _loggingLevel("none")
     {
+        string level = Util::Application::instance().config().getString("application.log_level", "none");
+        _logger.setLevel(level);
+
+        _logger.trace(__PRETTY_FUNCTION__ + name);
     }
 
-    const std::string& PageContent::name() const
-    {
-        return _name;
+    PageContent::~PageContent() {
+        _logger.trace(__PRETTY_FUNCTION__ + _name);
+
     }
 
-    
-    void PageContent::setName(const std::string& name)
-    {
+    void PageContent::setName(const std::string &name) {
         _name = name;
     }
 
-    ostream& PageContent::write(ostream& os) const
+    const string PageContent::getName() const {
+        return _name;
+    }
+
+    Page &PageContent::getPage() const {
+        return *_page;
+    }
+
+    void PageContent::setPage(Page* page)
     {
-        os << "PageContent" << endl;
+        _page = page;
+    }
+
+    Page &PageContent::getPage() {
+        return static_cast<const PageContent &>(*this).getPage();
+    }
+
+    NameValueCollection &PageContent::getData() const {
+        return _page->getFormData();
+    }
+
+    NameValueCollection &PageContent::getData() {
+        return const_cast<NameValueCollection &>(
+                static_cast<const PageContent &>(*this).getData());
+    }
+
+    ostream &PageContent::write(ostream &os) const {
+        os << "const PageContent" << endl;
         return os;
+    }
+
+    ostream &PageContent::write(ostream &os) {
+        os << "PageContent" << endl;
+        return static_cast<const PageContent &>(*this).write(os);
     }
 
     bool PageContent::verify() const {
