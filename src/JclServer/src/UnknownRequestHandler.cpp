@@ -45,20 +45,26 @@ namespace jcl {
   using jcl::HtmlTags;
     using Poco::Exception;
 
-    UnknownContent::UnknownContent(Page &page)
-            : PageContent("Unknown", page) {
+    UnknownContent::UnknownContent()
+            : PageContent("Unknown") {
+        _logger.trace(__PRETTY_FUNCTION__);
     }
 
     std::ostream &UnknownContent::write(std::ostream &os) const {
+        _logger.trace(__PRETTY_FUNCTION__);
+
         os << R"msgx(<p>UnknownContent</p>)msgx" << endl;
 
-        auto& request = _page.getRequest();
+        auto& page = getPage();
+
+        auto& request = page.getRequest();
         HTMLForm form(request, request.stream());
 
-        Poco::URI uri{_page.getRequest().getURI()};
+        Poco::URI uri{page.getRequest().getURI()};
         Poco::Path path{uri.getPath()};
-        auto data = _page.getFormData();
-        data.set("page.h1", "Unknown Request Handler");
+
+        auto& data = getData();
+        data.set("getPage.h1", "Unknown Request Handler");
 
         string req{path.directory(0)};
 
@@ -69,7 +75,7 @@ namespace jcl {
 
         // Display header records
         os << "<p>Header Records:" << "<table>" << endl;
-        for (auto it : _page.getRequest()) {
+        for (auto it : page.getRequest()) {
             os << HtmlTags::tableEntry(it) << endl;
         }
         os << "</table></p>" << endl;
@@ -108,6 +114,10 @@ namespace jcl {
         return os;
     }
 
+    std::ostream& UnknownContent::write(std::ostream &os) {
+        return static_cast<const UnknownContent&>(*this).write((os));
+    }
+
   //------------------------------------------------------------------------
 
       UnknownRequestHandler::UnknownRequestHandler()
@@ -123,9 +133,11 @@ namespace jcl {
         bool error(false);
         try {
 
+#if 0
             if (request.getMethod() == "GET") {
                 throw UnexpectedArgumentException("UnknownRequestHandler called with GET method.");
             }
+#endif
 
         } catch (OptionException e) {
             _logger.information(e.className());
@@ -150,21 +162,20 @@ namespace jcl {
           auto& data = page.getFormData();
 
           // Set Page Title
-          data.set("page.title", "Unknown Handler");
+          data.set("getPage.title", "Unknown Handler");
 
           // Set Header Content heading
-          data.set("page.h1", "Unknown Request Handler");
-          data.set("page.h1", "sadness");
+          data.set("getPage.h1", "Unknown Request Handler");
+          data.set("getPage.h1", "sadness");
 
           try {
-              auto h1 = data.get("page.h1");
+              auto h1 = data.get("getPage.h1");
           } catch(Exception& e) {
               cerr << "Exception: " << e.message() << endl;
           }
 
-          page.add(new HeaderContent(page));
-          page.add(new UnknownContent(page));
-          page.add(new FooterContent(page));
+          page.add(make_shared<UnknownContent>());
+
           page.send();
 
       }
