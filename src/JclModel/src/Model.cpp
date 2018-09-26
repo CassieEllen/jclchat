@@ -26,6 +26,8 @@
 #include "Poco/Data/MySQL/Connector.h"
 #include "Poco/Data/MySQL/MySQLException.h"
 
+#include <Poco/Util/LayeredConfiguration.h>
+
 #include <iostream>
 #include <sstream>
 
@@ -36,58 +38,68 @@ namespace jcl {
     using Poco::Data::Session;
     using Poco::Data::Statement;
 
+    /// @brief Default ctor
+    Model::Model()
+            : _host("localhost"),
+              _port("3306"),
+              _database("jcl"),
+              _user("jcl"),
+              _password("secret"),
+              _compress("true"),
+              _reconnect("true") {
+        Poco::Data::MySQL::Connector::registerConnector();
+    }
+
+    /// @brief ctor using application configuration
+    /// @param config application configuration
+    Model::Model(const Poco::Util::LayeredConfiguration &config)
+            : _host("localhost"),
+              _port("3306"),
+              _database("jcl"),
+              _user("jcl"),
+              _password("secret"),
+              _compress("true"),
+              _reconnect("true") {
+        configure(config);
+        Poco::Data::MySQL::Connector::registerConnector();
+    }
+
+    /// Destructor
+    Model::~Model() {
+        Poco::Data::MySQL::Connector::unregisterConnector();
+    }
+
     /// Implements this class as a singleton managed by the application
-    Model& Model::instance()
-    {
+    Model &Model::instance() {
         static Poco::SingletonHolder<Model> sh;
         return *sh.get();
     }
 
-    Model::Model()
-    {
-        Poco::Data::MySQL::Connector::registerConnector();
-    }
-    
-    void Model::configure(Poco::Util::LayeredConfiguration& config)
-    {
+    void Model::configure(const Poco::Util::LayeredConfiguration &config) {
         _host = config.getString("mysql.host", "localhost");
-        //cout << _host << endl;
         _port = config.getString("mysql.port", "3306");
-        // cout << _port << endl;
         _database = config.getString("mysql.database", "jcl");
-        //cout << _database << endl;
         _user = config.getString("mysql.user", "jcl");
-        //cout << _user << endl;
         _password = config.getString("mysql.password", "secret");
-        //cout << _password << endl;
         _compress = config.getString("mysql.compress", "true");
-        //cout << _compress << endl;
         _reconnect = config.getString("mysql.auto-reconnect", "true");
-        //cout << _reconnect << endl;
     }
 
-    Model::~Model()
-    {
-        //Poco::Data::MySQL::Connector::unregisterConnector();
-    }
-
-    string Model::toString() const
-    {
+    string Model::toString() const {
         ostringstream ss;
         ss << "Model" << endl
-             << "\tHost: " << _host << endl
-             << "\tPort: " << _port << endl
-             << "\tDatabase: " << _database << endl
-             << "\tUser: " << _user << endl
-             << "\tPassword: " << _password << endl
-             << "\tCompress: " << _compress << endl
-             << "\tAuto-reconnect: " << _reconnect;
+           << "\tHost: " << _host << endl
+           << "\tPort: " << _port << endl
+           << "\tDatabase: " << _database << endl
+           << "\tUser: " << _user << endl
+           << "\tPassword: " << _password << endl
+           << "\tCompress: " << _compress << endl
+           << "\tAuto-reconnect: " << _reconnect;
         return ss.str();
     }
 
-    string Model::getConnectString() const
-    {
-        char sc {';'};
+    string Model::getConnectString() const {
+        char sc{';'};
         ostringstream ss;
         ss << "host=" << _host << sc
            << "port=" << _port << sc
@@ -99,10 +111,10 @@ namespace jcl {
         return ss.str();
     }
 
-    Session Model::getSession()
-    {
+    Session Model::getSession() {
         // create a session
         Session session("mysql", getConnectString());
+        return session;
     }
-    
+
 }
