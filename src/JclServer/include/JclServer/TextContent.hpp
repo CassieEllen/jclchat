@@ -26,36 +26,34 @@
 
 namespace jcl {
 
-class TextContent : public PageContent
-{
-public:
-    /// @brief ctor
-    /// @param name name of the text content object
-    /// @param page page containing this object
-    TextContent(const std::string& name, Page& page);
+    class TextContent : public PageContent {
+    public:
+        /// @brief Constructor
+        /// @param name name of the text content object
+        /// @param text text content
+        TextContent(const std::string &name, const std::string &text);
 
-    /// @brief ctor
-    /// @param name name of the text content object
-    /// @param text text content
-    /// @param page page containing this object
-    TextContent(const std::string& name, const std::string& text, Page &page);
+        /// @brief Destructor
+        virtual ~TextContent();
 
-    /// @brief
-    virtual ~TextContent();
+        /// @brief Writes the contents of this object to the output stream
+        /// @param os output stream
+        /// @return output stream
+        std::ostream &write(std::ostream &os) const override;
 
-    /// @brief Writes the contents of this object to the output stream
-    /// @param os output stream
-    /// @return output stream
-    std::ostream& write(std::ostream& os) const override;
+        /// @brief Writes the contents of this object to the output stream
+        /// @param os output stream
+        /// @return output stream
+        std::ostream &write(std::ostream &os) override;
 
-    /// @brief Sets the contents of this object
-    /// @param text text content
-    void setText(const std::string& text);
+        /// @brief Sets the contents of this object
+        /// @param text text content
+        void setText(const std::string &text);
 
-private:
-    /// @brief Text content of this object
-    std::string _text;
-};
+    private:
+        /// @brief Text content of this object
+        std::string _text;
+    };
 
 }
 #endif // TextContent_INCLUDED
