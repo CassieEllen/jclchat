@@ -21,41 +21,45 @@
 #ifndef RegisterRequestHandler_INCLUDED
 #define RegisterRequestHandler_INCLUDED
 
-#include <JclServer/Types.hpp>
-#include <JclServer/PageContent.hpp>
-
 #include <Poco/Net/HTTPRequestHandler.h>
-#include <Poco/Logger.h>
+
+#include <JclServer/Types.hpp>
+#include <JclServer/PocoClasses.hpp>
 
 namespace jcl {
 
     class RegisterRequestHandler : public Poco::Net::HTTPRequestHandler {
     public:
-        /// Constructor
+        /// @brief Constructor
         RegisterRequestHandler();
 
-        /// Disable copy Constructor
+        /// @brief Disable copy Constructor
         RegisterRequestHandler(const RegisterRequestHandler &) = delete;
 
-        /// Disable copy Operator=
+        /// @brief Disable copy Operator=
+        /// @return undefined
         RegisterRequestHandler &operator=(const RegisterRequestHandler &) = delete;
 
-        /// Destructor
+        /// @brief Destructor
         virtual ~RegisterRequestHandler();
 
-        /// HTTP Request Handler
+        /// @brief HTTP Request Handler
         virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
 
-        /// Writes out the content of this page
+        /// @brief Write contents
+        /// @param req
+        /// @param resp
         void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
 
     private:
 
-        /// System Logger
+        /// @brief System Logger
         Poco::Logger &_logger;
-        /// Form data to be displayed in the pgge.
-        NameValueCollection _formData;
+
+        /// @brief Form data to be displayed in the pgge.
+        //NameValueCollection _formData;
     };
 
 }
+
 #endif // RegisterRequestHandler_INCLUDED
