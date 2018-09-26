@@ -1,4 +1,4 @@
-// Model.h
+// Model.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2017 Cassie E Nicol
@@ -21,39 +21,52 @@
 #ifndef Model_INCLUDED
 #define Model_INCLUDED
 
-#include "Poco/SingletonHolder.h"
-#include <Poco/Util/LayeredConfiguration.h>
-#include "Poco/Data/Session.h"
+//#include "Poco/SingletonHolder.h"
+//#include <Poco/Util/LayeredConfiguration.h>
+//#include "Poco/Data/Session.h"
 
 #include <string>
 
+namespace Poco {
+    namespace Util {
+        class LayeredConfiguration;
+    }
+    namespace Data {
+        class Session;
+    }
+}
+
 namespace jcl {
 
-    class Model
-    {
+    class Model {
     public:
         Model();
-        Model(Poco::Util::LayeredConfiguration& config);
-        Model(Model& rhs) = delete;
-        Model(Model&& rvalue) = delete;
-        Model& operator=(Model& rhs) = delete;
-        Model& operator=(Model&& rvalue) = delete;
-        ~Model();
-        void configure(Poco::Util::LayeredConfiguration& config);
-        
-        std::string getConnectString() const;
-        Poco::Data::Session getSession();
-            
-        std::string toString() const;
 
-        /// Returns a reference to the Application singleton.
-        ///
-        /// Throws a NullPointerException if no Application instance exists.
+        Model(const Poco::Util::LayeredConfiguration &config);
+
+        virtual ~Model();
+
+        // Don't surprise me with created methods.
+        Model(Model &rhs) = delete;
+
+        Model(Model &&rvalue) = delete;
+
+        Model &operator=(Model &rhs) = delete;
+
+        Model &operator=(Model &&rvalue) = delete;
+
         static Model& instance();
 
-    private:
-        void setup();
+        std::string getConnectString() const;
 
+        std::string toString() const;
+
+        Poco::Data::Session getSession();
+
+    protected:
+        void configure(const Poco::Util::LayeredConfiguration &config);
+
+    private:
         std::string _host;
         std::string _port;
         std::string _database;
