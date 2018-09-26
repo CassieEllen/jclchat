@@ -26,10 +26,13 @@
 #include <JclServer/FooterContent.hpp>
 #include <JclServer/TextContent.hpp>
 
+#if 0
 #include <HtmlPages/VerifyHandler.h>
 #include <HtmlPages/LoginHandler.h>
 #include <HtmlPages/IndexHandler.h>
+#endif
 
+#include <Poco/URI.h>
 #include <Poco/Net/HTMLForm.h>
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
@@ -41,31 +44,52 @@
 namespace jcl {
     using namespace std;
     using namespace Poco::Net;
+    using Poco::Logger;
+    using Poco::URI;
     using Poco::Util::OptionException;
     using Poco::Util::MissingArgumentException;
     using Poco::Util::UnexpectedArgumentException;
     
     LoginRequestHandler::LoginRequestHandler()
-        : _logger(Poco::Logger::get("LoginRequestHandler"))
+        : _logger(Logger::get("LoginRequestHandler"))
     {
-        _logger.setLevel(Poco::Message::PRIO_TRACE);
-        //_logger.trace(__PRETTY_FUNCTION__);
+        //_logger.setLevel(Poco::Message::PRIO_TRACE);
+        _logger.trace(__PRETTY_FUNCTION__);
     }
 
     LoginRequestHandler::~LoginRequestHandler()
     {
-        //_logger.trace(__PRETTY_FUNCTION__);
+        _logger.trace(__PRETTY_FUNCTION__);
     }
 
     void LoginRequestHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response)
     {
+        _logger.trace(__PRETTY_FUNCTION__);
         NameValueCollection messages;
         string username;
         string password;
         bool error = false;
 
-        try {
 
+        if(request.has("Referer")) {
+            string referer = request.get("Referer");
+            _logger.information("\tReferer: " + referer);
+            URI uriReferer(referer);
+            _logger.information("\t" + uriReferer.toString());
+            _logger.information("\t" + uriReferer.getPath());
+            _logger.information("\thost: " + uriReferer.getHost());
+            URI uriRequest { request.getURI() };
+            _logger.information("\tURI: " + uriRequest.toString());
+            _logger.information("\tRequest: " + uriRequest.toString());
+            _logger.information("\thost: " + uriRequest.getHost());
+        } else {
+	  _logger.error("No Referer, redirection to Welcome getPage.");
+            response.redirect("/");
+            ostream& out = response.send();
+            return;
+        }
+
+        try {
             if( request.getMethod() == "GET") {
                 throw UnexpectedArgumentException("LoginRequestHandler called with GET method.");
             }
@@ -113,9 +137,11 @@ namespace jcl {
             return;
         }
 
-        _logger.trace("Sending to VerifyHandler");
-        unique_ptr<JclPageRequestHandler> hp { new VerifyHandler() };
-        hp->handleRequest(request, response);
+        //_logger.trace("Sending to VerifyHandler");
+        //unique_ptr<JclPageRequestHandler> hp { new VerifyHandler() };
+        //hp->handleRequest(request, response);
+
+        write(request, response);
     }
 
 
@@ -124,9 +150,8 @@ namespace jcl {
         _logger.trace(__PRETTY_FUNCTION__);
 
         Page page("Login", request, response);
-        page.setFormData(_formData);
 
-#if 1
+#if 0
         TextContent* text1 = new TextContent(page);
         text1->setText("<p>Some Text</p>");
 
@@ -137,9 +162,7 @@ namespace jcl {
         text3->setText("<p>End Text</p>");
 #endif
 
-        page.add(new HeaderContent(page));
-        page.add(new LoginContent(page));
-        page.add(new FooterContent(page));
+        page.add(make_shared<LoginContent>());
 #if 0
         page.addAfter("Header", text1);
         page.addAfter("Login", text2);
