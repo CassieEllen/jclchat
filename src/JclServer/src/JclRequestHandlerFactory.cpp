@@ -15,46 +15,45 @@
 
 #include <JclModel/Model.hpp>
 
-#if 0
-#include <HtmlPages/WelcomeHandler.h>
-#include <HtmlPages/UnknownHandler.h>
-#include <HtmlPages/VerifyHandler.h>
-#endif
-
-#include <iostream>
-#include <memory>
-#include <regex>
-#include <sstream>
-
-#include <boost/filesystem.hpp>
-
 #include "Poco/URI.h"
 
+#include <Poco/Util/Application.h>
 #include <Poco/Logger.h>
 #include "Poco/Net/HTMLForm.h"
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Net/HTTPServerRequest.h>
-
 #include "Poco/MD5Engine.h"
+
+#include <boost/filesystem.hpp>
+
+#include <iostream>
+#include <memory>
+#include <regex>
+#include <set>
+#include <sstream>
 
 namespace jcl {
 
-    using namespace Poco::Net;
     using namespace std;
+    using namespace Poco::Net;
     using namespace boost::filesystem;
 
     JclRequestHandlerFactory::JclRequestHandlerFactory(jcl::Model& model)
             : _model(model)
-        , _logger(Poco::Logger::get("Page"))
+        , _logger(Poco::Logger::get("JclRequestHandlerFactory"))
     {
+        string level = Poco::Util::Application::instance().config().getString("application.log_level", "none");
+        _logger.setLevel(level);
+
         _logger.trace(__PRETTY_FUNCTION__);
-        _logger.setLevel("trace");
+
     }
 
     RequestType JclRequestHandlerFactory::getAction(const HTTPServerRequest& request) const {
+
         Poco::URI uri{request.getURI()};
         path path(uri.getPath());
-        const string &req{ path.string() };
+        string req{ path.string() };
 
         _logger.information("URI: " + uri.toString());
         _logger.information("path: " + uri.getPath());
@@ -69,6 +68,7 @@ namespace jcl {
         bool extFound = regex_match(path.string(), sm, extPattern);
         string extension;
         if(extFound && (2 == sm.size())) {
+#if 0
             _logger.information(path.string());
             ostringstream oss;
             oss << sm.size() << " matches found";
@@ -76,15 +76,20 @@ namespace jcl {
             for( const auto & it : sm) {
                 _logger.information(it);
             }
+#endif
             extension = sm[1];
+#if 0
             _logger.information("extension: " + extension);
+#endif
             set<string> fileExtensions {"css", "js", "ico"};
             if (fileExtensions.count(extension)) {
                 return RequestType::rtFile;
             }
         }
-        return RequestType::rtUnknown;
 
+        // Remove the beginning slash to get to the command
+        req.erase(0, 1);
+        _logger.information("req: " + req);
 
         if (req == "login") {
             return RequestType::rtLogin;
@@ -105,7 +110,7 @@ namespace jcl {
             case RequestType::rtIndex:
                 return new WelcomeRequestHandler;
             case RequestType::rtLogin:
-                return new LoginRequestHandler();
+                return new LoginRequestHandler;
             case RequestType::rtFile:
                 return new FileRequestHandler;
             case RequestType::rtRegister:
