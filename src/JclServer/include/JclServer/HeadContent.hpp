@@ -33,11 +33,15 @@ namespace jcl {
     {
     public:
         /// @brief Constructor
-        /// @param page reference to the containing @ref page.
-        explicit HeadContent(Page& page);
+        HeadContent();
 
         /// @brief Destructor
         virtual ~HeadContent() = default;
+
+        /// @brief Writes the content to ostream
+        /// @param os the stream to write to
+        /// @return the stream ostream
+        std::ostream& write(std::ostream& os) override;
 
         /// @brief Writes the content to ostream
         /// @param os the stream to write to
