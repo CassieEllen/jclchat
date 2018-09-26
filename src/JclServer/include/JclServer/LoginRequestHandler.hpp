@@ -31,16 +31,35 @@ namespace jcl {
 class LoginRequestHandler : public Poco::Net::HTTPRequestHandler
 {
  public:
+    /// @brief
     LoginRequestHandler();
+
+    /// @brief
     virtual ~LoginRequestHandler();
+
+    /// @brief
+    LoginRequestHandler(const LoginRequestHandler&) = delete;
+
+    /// @brief
+    /// @return
+    LoginRequestHandler& operator=(const LoginRequestHandler&) = delete;
+
+    /// @brief
+    /// @param req
+    /// @param resp
     virtual void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
+
+    /// @brief
+    /// @param req
+    /// @param resp
     void write(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse &resp);
     
  private:
-    LoginRequestHandler(const LoginRequestHandler&) = delete;
-    LoginRequestHandler& operator=(const LoginRequestHandler&) = delete;
 
+    /// @brief
     Poco::Logger& _logger;
+
+    /// @brief
     NameValueCollection _formData;
 };
 
