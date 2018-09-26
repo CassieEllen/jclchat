@@ -1,4 +1,4 @@
-// User.h
+// User.hpp
 //
 // <one line to give the program's name and a brief idea of what it does.>
 // Copyright (C) 2017 Cassie E Nicol
@@ -21,12 +21,14 @@
 #ifndef User_INCLUDED
 #define User_INCLUDED
 
+#include <string>
+
 namespace jcl {
 
 class User
 {
  public:
-    std::string User::digestPassword(const std::string& password) const;
+    std::string digestPassword(const std::string& password) const;
 };
 
 }
