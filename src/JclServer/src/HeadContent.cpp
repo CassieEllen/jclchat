@@ -27,13 +27,18 @@
 namespace jcl {
     using namespace std;
 
-    HeadContent::HeadContent(Page& page)
-            : PageContent("head", page)
+    HeadContent::HeadContent()
+            : PageContent("head")
     {
+        _logger.trace(__PRETTY_FUNCTION__ + _name);
+
     }
     
-    std::ostream& HeadContent::write(std::ostream& os) const {
-        string title = _page.getFormData().get("page.title", "page.title");
+    std::ostream& HeadContent::write(std::ostream& os) const
+    {
+        const string& title = getData().get("getPage.title", "getPage.title");
+
+        os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
 
         os << "<head>" << endl
             << "<title>" << title << "</title>" << endl;
@@ -43,5 +48,10 @@ namespace jcl {
         os << "</head>" << endl;
     }
 
+
+    std::ostream& HeadContent::write(std::ostream& os)
+    {
+        return static_cast<const HeadContent&>(*this).write(os);
+    }
 }
     
