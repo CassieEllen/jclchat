@@ -54,11 +54,14 @@ install(EXPORT MyLibraryConfig DESTINATION share/MyLibrary/cmake)
 # This makes the project importable from the build directory
 export(TARGETS JclServer FILE MyLibraryConfig.cmake)
 
-# Every library has unit tests, of course
-#add_executable(testlib
+## Every library has unit tests, of course
+#add_executable(JclServerTestLib
+#    test/PageTest.cpp
 #    test/testlib.cpp)
 #
-#target_link_libraries(testlib
-#    JclServer)
+#target_link_libraries(JclServerTestLib
+#        JclServer
+#        Boost::unit_test_framework
+#        )
 #
 #add_test(testlib testlib)
