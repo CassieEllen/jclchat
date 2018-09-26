@@ -28,13 +28,13 @@
 #include "Poco/URI.h"
 #include <Poco/Exception.h>
 
-
 #include <iostream>
 #include <regex>
 #include <map>
 #include <memory>
 #include <unistd.h>
 #include <fstream>
+#include <JclServer/JclServerApp.hpp>
 
 namespace jcl {
     using namespace std;
@@ -46,7 +46,9 @@ namespace jcl {
         , _path()
         , _contentType()
     {
-        _logger.setLevel(Poco::Message::PRIO_TRACE);
+        string level = Poco::Util::Application::instance().config().getString("application.log_level", "none");
+        _logger.setLevel(level);
+
         _logger.trace(__PRETTY_FUNCTION__);
     }
 
@@ -58,13 +60,14 @@ namespace jcl {
             Poco::URI uri {request.getURI()};
             _logger.information("uri: " + uri.toString() );
             auto filePath = uri.getPath().substr(1);
-
+            _logger.information("filePath: " + filePath);
 
             getContentType(filePath);
 
-
-            _path = current_path();
+            auto& app = JclServerApp::instance();
+            _path = app.getAppPath().toString();
             _path /= filePath;
+            _logger.information("_path: " + _path.string());
 
 #if 0
             string cmd { "ls -l " };
@@ -73,25 +76,27 @@ namespace jcl {
 #endif
 
             if( ! exists(_path) ) {
-                //cout << Poco::Util::Application::instance().commandPath() << endl;
+                _logger.error("Application path: " + Poco::Util::Application::instance().commandPath() );
                 throw Poco::FileNotFoundException("File not found: " + _path.string() );
             }
 
-            _logger.trace("File found: " + _path.string() );
+            //_logger.trace("File found: " + _path.string() );
             write(request, response);
             return;
 
         } catch (const Poco::FileNotFoundException& e) {
-            _logger.error(__FILE__ + __LINE__);
+            _logger.log(e, __FILE__, __LINE__);
+            //_logger.error(__FILE__ + __LINE__);
             _logger.error("Exception: " + e.message());
             _logger.error(e.className());
+            writeFileDoesNotExist(request, response);
         } catch (const Poco::Exception& e) {
+            _logger.log(e, __FILE__, __LINE__);
             _logger.error(__FILE__ + __LINE__);
             _logger.error("Exception: " + e.message());
             _logger.error(e.className());
+            writeException(request, response);
         }
-        
-        write(request, response);
     }
 
     void FileRequestHandler::getContentType(const path& path)
@@ -102,18 +107,11 @@ namespace jcl {
         bool found = regex_match(path.string(), m, extPattern);
         if( ! found) {
             throw Poco::Exception("pattern not found", __FILE__, __LINE__);
-        }
-        if( m.size() != 2 ) {
-#if 0
-            cout << "size: " << m.size() << endl;
-            for(auto i : m) {
-                cout << "\t" << i.str() << endl;
-            }
-#endif
+        } else if( m.size() != 2 ) {
             throw Poco::Exception("pattern not found - count not 2", __FILE__, __LINE__);
         }
         string ext = m[1].str();
-        _logger.information("ext: " + ext);
+        //_logger.information("ext: " + ext);
 
         map<string,string> contentMap {
                 {"css", "text/css"},
@@ -129,17 +127,46 @@ namespace jcl {
         _logger.information("_contentType: "  +_contentType);
     }
 
+    void FileRequestHandler::writeFileDoesNotExist(HTTPServerRequest &request, HTTPServerResponse &response) {
+        _logger.trace(__PRETTY_FUNCTION__);
+        _logger.trace("_contentType: " + _contentType);
+        _logger.information("File not found: " + _path.string());
+
+        response.setStatus(HTTPResponse::HTTP_NOT_FOUND);
+        response.setContentType("text/plain");
+        ostream &out = response.send();
+        out << "Not found: " << _path << endl;
+        out.flush();
+        displayHeaderRecords(response);
+    }
+
+    void FileRequestHandler::writeException(HTTPServerRequest &request, HTTPServerResponse &response)
+    {
+        _logger.trace(__PRETTY_FUNCTION__);
+        _logger.trace("_contentType: " + _contentType);
+        _logger.information("Exception thrown trying to send: " + _path.string());
+
+        response.setStatus(HTTPResponse::HTTP_NOT_IMPLEMENTED);
+        response.setContentType("text/plain");
+        ostream &out = response.send();
+        out << "Exception thrown trying to send: " << _path << endl;
+        out.flush();
+        displayHeaderRecords(response);
+    }
+
     void FileRequestHandler::write(HTTPServerRequest &request, HTTPServerResponse &response)
     {
         _logger.trace(__PRETTY_FUNCTION__);
         _logger.trace("_contentType: " + _contentType);
+        displayHeaderRecords(response);
 
         if (_contentType.empty()) {
+            _logger.information("_contentType is empty");
             response.setStatus(HTTPResponse::HTTP_NOT_FOUND);
             response.setContentType("text/plain");
             ostream& out = response.send();
             out << "Not Implemented: " << _contentType << endl;
-            out << "\"" << _path << "\"" << endl;
+            out << _path << endl;
             out.flush();
             return;
         }
@@ -154,5 +181,13 @@ namespace jcl {
 
     }
 
-}
+    void FileRequestHandler::displayHeaderRecords(const HTTPServerResponse &response) const {
+        // Display header records
+        _logger.information("Header Records:");
+        for(auto it : response) {
+            _logger.information("\t" + it.first + ": " + it.second);
+        }
+    }
+
+} // namespace jcl
     
