@@ -29,13 +29,14 @@ namespace jcl {
 class HeaderContent : public PageContent
 {
 public:
-    HeaderContent(Page& page)
-        : PageContent("Header", page)
+    HeaderContent()
+        : PageContent("Header")
     {
     }
 
     virtual ~HeaderContent();
     
+    std::ostream& write(std::ostream& os) override;
     std::ostream& write(std::ostream& os) const override;
 
 };
