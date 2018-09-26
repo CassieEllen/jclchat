@@ -29,9 +29,9 @@ namespace jcl {
 class FooterContent : public PageContent
 {
 public:
-    FooterContent(Page& page);
+    FooterContent();
     virtual ~FooterContent();
-    std::ostream& write(std::ostream& os) const;
+    std::ostream& write(std::ostream& os) override;
 };
 
 }
