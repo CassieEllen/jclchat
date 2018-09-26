@@ -29,7 +29,7 @@ namespace jcl {
 class LoginContent : public PageContent
 {
 public:
-    LoginContent(Page& page);
+    LoginContent();
     virtual ~LoginContent() = default;
 
     std::ostream& write(std::ostream& os) const;
