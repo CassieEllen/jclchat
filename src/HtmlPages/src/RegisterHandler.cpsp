@@ -1,4 +1,4 @@
-<%@ page class="RegisterHandler" namespace="jcl" baseClass="JclPageRequestHandler" %>
+<%@ getPage class="RegisterHandler" namespace="jcl" baseClass="JclPageRequestHandler" %>
 <%!
     #include "Poco/DateTime.h"
     #include "Poco/DateTimeFormatter.h"
