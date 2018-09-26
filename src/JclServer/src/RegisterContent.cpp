@@ -28,18 +28,21 @@
 
 namespace jcl {
     using namespace std;
-    RegisterContent::RegisterContent(Page& page)
-        : PageContent("Register", page)
+    RegisterContent::RegisterContent()
+        : PageContent("Register")
     {
     }
 
     std::ostream& RegisterContent::write(std::ostream& os) const
     {
         os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
-        if(_page.getRequest().has("register.error")) {
-            string error = _page.getRequest().get("register.error");
+
+        auto& page = getPage();
+        if(page.getRequest().has("register.error")) {
+            string error = page.getRequest().get("register.error");
             os << R"msg(<span class="error">)msg" << error << "</span>";
         }
+
         os << R"msgx(
 <form action="/register" name="register" method="post" enctype="text/plain">
 <table>
