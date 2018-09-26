@@ -27,6 +27,7 @@ namespace Poco {
         class HTTPRequestHandler;
         class HTTPServerRequest;
         class HTTPServerResponse;
+        class NameValueCollection;
     }
 }
 
