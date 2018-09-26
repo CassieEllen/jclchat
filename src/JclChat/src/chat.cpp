@@ -22,13 +22,14 @@
 
 #include <JclServer/JclServerApp.hpp>
 
+#include <boost/filesystem.hpp>
+
 using namespace std;
 using namespace jcl;
+using namespace boost::filesystem;
 
-
-ostream& copyrightNotice(ostream& os)
-{
-    const char * s = R"str(
+ostream &copyrightNotice(ostream &os) {
+    const char *s = R"str(
     <program>  Copyright (C) <years>  <name of author>
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
@@ -37,23 +38,34 @@ ostream& copyrightNotice(ostream& os)
     os << s << endl;
 }
 
-ostream& notes(ostream& os)
-{
-   const char * s = R"str(
+ostream &notes(ostream &os) {
+    const char *s = R"str(
 On Unix platforms, an application built on top of the ServerApplication class can be optionally run as a daemon by giving the —daemon command line option. A daemon, when launched, immediately forks off a background process that does the actual work. After launching the background process, the foreground process exits. 
 
 When running as a daemon, specifying the —pidfile option (e.g., —pidfile=/var/run/sample.pid) may be useful to record the process ID of the daemon in a file. The PID file will be removed when the daemon process terminates (but not, if it crashes). 
 )str";
-   os << s << endl;
+    os << s << endl;
 }
 
-int main(int argc, char **argv)
-{
-  cout << "jcbchat server" << endl;
-  cout << copyrightNotice << endl;
-  cout << notes << endl;
+int main(int argc, char **argv) {
+    cout << "jclchat server" << endl;
+    cout << copyrightNotice << endl;
+    cout << notes << endl;
 
-  JclServerApp app;
-  return app.run(argc, argv);
+    path p = current_path();
+    cout << "curent_path: " << p.string() << endl;
+    p /= "chat.log";
+    if(exists(p)) {
+        cout << "found: " << p << endl;
+        remove(p);
+    }
 
+    if(exists(p)) {
+        cout << "found: " << p << endl;
+    } else {
+        cout << "removed: " << p << endl;
+    }
+
+    JclServerApp app;
+    return app.run(argc, argv);
 }
