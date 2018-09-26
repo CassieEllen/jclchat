@@ -59,12 +59,12 @@ namespace jcl {
 
         /// @brief Add content to the end of the content list.
         /// @param content content to be added
-        void add(PageContent *content);
+        void add(const std::shared_ptr<PageContent>& content);
 
         /// @brief Add content after the named content.
         /// @param name
         /// @param content
-        void addAfter(const std::string &name, PageContent *content);
+        void addAfter(const std::string &name, std::shared_ptr<PageContent>& content);
 
         /// @brief Get the page name
         /// @return the page name
@@ -84,15 +84,13 @@ namespace jcl {
             return _formData;
         }
 
-        /// @brief Set the page variables
-        /// @param data
-        void setFormData(const Poco::Net::NameValueCollection &data) {
-            _formData = data;
+        const Poco::Net::NameValueCollection &getFormData() const {
+            return _formData;
         }
 
         /// @brief Get the HTTPServerRequest
         /// @return
-        Poco::Net::HTTPServerRequest &getRequest() {
+        Poco::Net::HTTPServerRequest &getRequest() const {
             return _request;
         }
 
@@ -117,6 +115,7 @@ namespace jcl {
         /// @brief Page content vector
         std::vector<std::shared_ptr<PageContent> > _content;
 
+        /// @brief Logger
         Poco::Logger& _logger;
     };
 
