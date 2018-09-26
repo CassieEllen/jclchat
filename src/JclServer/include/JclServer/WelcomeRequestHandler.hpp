@@ -35,10 +35,10 @@ namespace jcl {
     class WelcomeContent : public PageContent
     {
     public:
-        explicit WelcomeContent(Page& page);
+        explicit WelcomeContent();
         virtual ~WelcomeContent() override = default;
 
-        std::ostream& write(std::ostream& os) const override;
+        std::ostream& write(std::ostream& os) override;
     };
 
     /// @brief Welcome Page Request Handler
