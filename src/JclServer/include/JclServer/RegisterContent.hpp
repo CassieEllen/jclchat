@@ -27,7 +27,7 @@ namespace jcl {
 
     class RegisterContent : public PageContent {
     public:
-        RegisterContent(Page& page);
+        RegisterContent();
 
         virtual ~RegisterContent() = default;
 
