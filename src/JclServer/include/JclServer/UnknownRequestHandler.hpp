@@ -32,12 +32,13 @@ namespace jcl {
 class UnknownContent : public PageContent
 {
 public:
-    UnknownContent(Page& page);
+    UnknownContent();
     virtual ~UnknownContent() = default;
     UnknownContent(const UnknownContent&) = delete;
     UnknownContent&operator=(const UnknownContent&) = delete;
 
-    std::ostream& write(std::ostream& os) const;
+    std::ostream& write(std::ostream& os) const override;
+    std::ostream& write(std::ostream& os) override;
 };
 
 class UnknownRequestHandler : public Poco::Net::HTTPRequestHandler
@@ -54,7 +55,7 @@ class UnknownRequestHandler : public Poco::Net::HTTPRequestHandler
  private:
 
     Poco::Logger& _logger;
-    NameValueCollection _formData;
+    //NameValueCollection _formData;
 };
 
 }
