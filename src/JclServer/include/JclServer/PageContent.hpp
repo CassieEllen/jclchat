@@ -23,6 +23,9 @@
 
 #include <JclServer/PocoClasses.hpp>
 
+#include <Poco/Exception.h>
+
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -40,25 +43,48 @@ namespace jcl {
         ///
         /// @param name Creates a section named <i>jcl::PageContent</i>
         /// @param page A reference to the containing page.
-        explicit PageContent(const std::string& name, Page& page);
+        explicit PageContent(const std::string& name);
 
         /// @brief Destructor
-        virtual ~PageContent() = default;
+        //
+        // I would use a default destructor, but I want to get a log message when the destructor is called.
+        //virtual ~PageContent() = default;
+        virtual ~PageContent();
 
         /// @brief Do not allow copy.
         PageContent(const PageContent&) = delete;
 
         /// @brief Do not allow copy
-        /// @return
+        /// @return undefined
         PageContent&operator=(const PageContent&) = delete;
-
-        /// @brief Gets the name of the content object
-        /// @return the content's name
-        const std::string& name() const;
 
         /// @brief Sets the name of the content object
         /// @param name the new name for this content instance
         void setName(const std::string& name);
+
+        /// @brief Gets the content's name
+        /// @return the name
+        const std::string getName() const;
+
+        /// @brief Sets the owning page.
+        /// @param page shared pointer to the owning page.
+        void setPage(Page* page);
+
+        /// @brief Returns a reference to the containing page
+        /// @return a reference to the containing page
+        Page& getPage() const;
+
+        /// @brief Returns a reference to the containing page
+        /// @return a reference to the containing page
+        Page& getPage();
+
+        Poco::Net::NameValueCollection& getData() const;
+        Poco::Net::NameValueCollection& getData();
+
+        /// @brief Writes out the content
+        /// @param os std::ostream to write to
+        /// @return the std::ostream
+        virtual std::ostream& write(std::ostream& os);
 
         /// @brief Writes out the content
         /// @param os std::ostream to write to
@@ -78,8 +104,22 @@ namespace jcl {
         std::string _name;
 
         /// @brief A reference to the containing page.
-        Page& _page;
+        mutable Page* _page;
+
+        Poco::Logger& _logger;
+        std::string _loggingLevel;
     };
+
+    // ------------------------------------------------------------------------
+
+    /// @brief stream manipulator to write out PageContent
+    /// @param os the std::ostream to write content to.
+    /// @param rhs The content to write out.
+    /// @return the given std::ostream.
+    inline std::ostream& operator<<(std::ostream& os, PageContent& rhs)
+    {
+        return rhs.write(os);
+    }
 
     /// @brief stream manipulator to write out PageContent
     /// @param os the std::ostream to write content to.
