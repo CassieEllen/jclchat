@@ -25,8 +25,8 @@
 namespace jcl {
     using namespace std;
 
-    VerifyContent::VerifyContent(Page& page)
-        : PageContent("Verify", page)
+    VerifyContent::VerifyContent()
+        : PageContent("Verify")
     {
     }
 
