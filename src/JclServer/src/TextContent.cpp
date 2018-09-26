@@ -20,25 +20,25 @@
 
 #include <JclServer/TextContent.hpp>
 
+#include <Poco/Logger.h>
+
 #include <ostream>
 
 namespace jcl {
     using namespace std;
 
-    TextContent::TextContent(const std::string &name, Page& page)
-        : PageContent(name, page)
-    {
-    }
-
-    TextContent::TextContent(const std::string &name, const std::string &text, Page &page)
-        :   PageContent(name, page)
+    TextContent::TextContent(const std::string &name, const std::string &text)
+        :   PageContent(name)
         , _text(text)
     {
+        _logger.trace(__PRETTY_FUNCTION__);
 
     }
 
     TextContent::~TextContent()
     {
+        _logger.trace(__PRETTY_FUNCTION__);
+
     }
     
     void TextContent::setText(const string& text)
@@ -50,6 +50,10 @@ namespace jcl {
     {
         os << _text << endl;
         return os;
+    }
+
+    std::ostream &TextContent::write(std::ostream &os) {
+        return static_cast<const TextContent&>(*this).write(os);
     }
 
 }
