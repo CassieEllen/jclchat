@@ -26,8 +26,8 @@
 namespace jcl {
     using namespace std;
 
-    FooterContent::FooterContent(Page& page)
-        : PageContent("Footer", page)
+    FooterContent::FooterContent()
+        : PageContent("Footer")
     {
     }
 
@@ -35,14 +35,12 @@ namespace jcl {
     {
     }
     
-    ostream& FooterContent::write(ostream& os) const
+    ostream& FooterContent::write(ostream& os)
     {
         os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
         os <<
 R"msg(
 <hr>
-<p>Footer Stuff</p>
-
 <p>Copyright 2018 (c) JCL Group, All Rights Reserved.</p>
 )msg";
     }
