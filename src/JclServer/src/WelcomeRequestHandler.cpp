@@ -21,9 +21,9 @@
 #include <JclServer/WelcomeRequestHandler.hpp>
 
 #include <JclServer/Page.hpp>
-#include <JclServer/HeaderContent.hpp>
-#include <JclServer/FooterContent.hpp>
 #include <JclServer/TextContent.hpp>
+
+#include <Poco/Util/Application.h>
 
 #include <iostream>
 
@@ -31,14 +31,14 @@ namespace jcl {
     using namespace std;
     using namespace Poco::Net;
 
-    WelcomeContent::WelcomeContent(Page &page)
-            : PageContent("Welcome", page) {
+    WelcomeContent::WelcomeContent()
+            : PageContent("Welcome") {
     }
 
-    std::ostream &WelcomeContent::write(std::ostream &os) const {
-        auto &data = _page.getFormData();
+    std::ostream &WelcomeContent::write(std::ostream &os) {
+        auto& data = getData();
 
-        string title = data.get("page.title", "Welcome");
+        string title = data.get("getPage.title", "Welcome");
         os << "<!-- " << __PRETTY_FUNCTION__ << " -->" << endl;
 
         os << R"msgx(
@@ -52,7 +52,9 @@ namespace jcl {
     WelcomeRequestHandler::WelcomeRequestHandler()
             : _logger(Poco::Logger::get("WelcomeRequestHandler"))
     {
-        _logger.setLevel(Poco::Message::PRIO_DEBUG);
+        string level = Poco::Util::Application::instance().config().getString("application.log_level", "none");
+        _logger.setLevel(level);
+
         _logger.trace(__PRETTY_FUNCTION__);
     }
 
@@ -66,13 +68,11 @@ namespace jcl {
         _logger.trace(__PRETTY_FUNCTION__);
 
         Page page("Welcome", request, response);
-        auto &data = page.getFormData();
-        data.set("page.title", "Welcome");
-        data.set("page.h1", "Welcome to Chat");
+        auto data = page.getFormData();
+        data.set("getPage.title", "Welcome");
+        data.set("getPage.h1", "Welcome to Chat");
 
-        page.add(new HeaderContent(page));
-        page.add(new WelcomeContent(page));
-        page.add(new FooterContent(page));
+        page.add( make_shared<WelcomeContent>());
 
         page.send();
     }
