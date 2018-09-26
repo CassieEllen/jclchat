@@ -20,9 +20,7 @@
 
 #include <JclServer/RegisterRequestHandler.hpp>
 
-#include <JclServer/StandardPage.hpp>
-//#include <JclServer/HeaderContent.hpp>
-//#include <JclServer/FooterContent.hpp>
+#include <JclServer/Page.hpp>
 #include <JclServer/RegisterContent.hpp>
 #include <JclServer/TextContent.hpp>
 
@@ -31,18 +29,17 @@
 #include <Poco/Util/OptionException.h>
 #include <Poco/Net/HTMLForm.h>
 
+#include <iostream>
 
 namespace jcl {
     using namespace std;
     using namespace Poco::Net;
-    //uding Poco::Util::OptionException;
-    //using Poco::Util::MissingArgumentException;
-    //using Poco::Util::UnexpectedArgumentException;
 
     //------------------------------------------------------------------------
 
     RegisterRequestHandler::RegisterRequestHandler()
-            : _logger(Poco::Logger::get("RegisterRequestHandler")) {
+        : _logger(Poco::Logger::get("RegisterRequestHandler"))
+    {
         _logger.setLevel(Poco::Message::PRIO_TRACE);
         //_logger.trace(__PRETTY_FUNCTION__);
     }
@@ -55,6 +52,11 @@ namespace jcl {
     void RegisterRequestHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response) {
         NameValueCollection messages;
 
+        HTMLForm form(request, request.stream() );
+        for(auto it : form) {
+            cout << it.first << ": " << "\"" << it.second << "\"" << endl;
+        }
+        request.set("register.error", "oops");
         write(request, response);
     }
 
@@ -62,8 +64,12 @@ namespace jcl {
         _logger.trace(__PRETTY_FUNCTION__);
 
         Page page("Register", request, response);
-        //auto data = page.setFormData(_formData);
-        page.addAfter("Header", new RegisterContent(page));
+        auto &data = page.getFormData();
+        data.set("getPage.title", "Register");
+        data.set("getPage.h1", "Register");
+
+        page.add(make_shared<RegisterContent>());
+
         page.send();
     }
 
