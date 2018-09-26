@@ -29,8 +29,8 @@
 namespace jcl {
     using namespace std;
 
-    LoginContent::LoginContent(Page& page)
-        : PageContent("Login", page)
+    LoginContent::LoginContent()
+        : PageContent("Login")
     {
     }
 
