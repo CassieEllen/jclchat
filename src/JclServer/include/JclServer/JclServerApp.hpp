@@ -1,6 +1,7 @@
-// JclServerApp.hpp
+/// @file JclServerApp.hpp
 //
-// <one line to give the program's name and a brief idea of what it does.>
+// Implements the Chat Server Application
+//
 // Copyright (C) 2017 Cassie E Nicol
 //
 // This program is free software: you can redistribute it and/or modify
@@ -21,23 +22,49 @@
 #ifndef JclServerApp_INCLUDED
 #define JclServerApp_INCLUDED
 
+#include <Poco/Util/ServerApplication.h>
+
+
 #include <JclModel/Model.hpp>
 
-#include <Poco/Util/ServerApplication.h>
+#include <Poco/Util/OptionSet.h>
+
 #include <Poco/URI.h>
 #include <string>
 
+namespace Poco {
+    namespace Util {
+        class OptionSet;
+    }
+}
+using Poco::Util::OptionSet;
+
 namespace jcl {
 
-    class JclServerApp : public Poco::Util::ServerApplication
-    {
+    class JclServerApp : public Poco::Util::ServerApplication {
     public:
         JclServerApp();
-        Model& model();
-    
+
+        const char *name() const override;
+
+        static JclServerApp &instance() {
+            dynamic_cast<JclServerApp &>(Application::instance());
+        }
+
+
+        const Poco::URI &getAppPath() const;
+
     protected:
-        int main(const std::vector<std::string> &);
-        void initialize(Application& self);
+        void initialize(Application &app) override;
+
+        void uninitialize() override;
+
+        void reinitialize(Application &app) override;
+
+        void defineOptions(OptionSet &options) override;
+
+
+        Model &model();
 
         /// @brief Gets the web root as specified in the config file.
         /// [web]
@@ -45,14 +72,26 @@ namespace jcl {
         /// @return the base path to retrieve web files from.
         std::string getWebPath() const;
 
-        const Poco::URI& getHttpPath() const;
-        const Poco::URI& getPocoPath() const;
+        /// @brief Gets the URI of apache2 running on the same server
+        /// @return Apache2 URI
+        const Poco::URI &getHttpPath() const;
 
-        Model& _model;
+        /// @brief Gets the URI of the poco server
+        /// @return POCO server URI
+        const Poco::URI &getPocoPath() const;
+
+
+    protected:
+        int main(const std::vector<std::string> &) override;
+
+        Model _model;
         Poco::URI _httpPath;
         Poco::URI _pocoPath;
+        Poco::URI _appPath;
+        std::string _logLevel;
+
     };
 
-}
+} // namespace jcl
 
 #endif // JclServerApp_INCLUDED
