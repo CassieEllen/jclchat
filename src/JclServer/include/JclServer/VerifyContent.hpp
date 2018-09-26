@@ -28,7 +28,7 @@ namespace jcl {
     class VerifyContent : public PageContent
     {
     public:
-        VerifyContent(Page& page);
+        VerifyContent();
         virtual ~VerifyContent() = default;
         std::ostream& write(std::ostream& os) const;
     };
