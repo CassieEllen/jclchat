@@ -28,7 +28,7 @@ probably do that for most static files.
 
 ---
 
-### jclchat.ini
+### JclChat.ini
 When the chat server starts, it reads from a file called *jclchat.ini*. 
 
 Here is my basic file
@@ -50,3 +50,4 @@ Here is my basic file
     port = 9090
     base = /home/cenicol/CLionProjects/jclchat/src
 ```
+*web.base* is important because it allows the web base to be in a different directory than the executable. 

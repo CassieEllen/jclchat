@@ -18,11 +18,9 @@ add_custom_command(TARGET JclChat PRE_BUILD
         )
 
 target_link_libraries(JclChat
-  JclServer
-  Poco::Foundation
-  Poco::Util
-  Poco::Net
-  Poco::DataMySQL
-        #poco-foundation
-        #poco-util
+        JclServer
+        Poco::Foundation
+        Poco::Util
+        Poco::Net
+        Poco::DataMySQL
         )
