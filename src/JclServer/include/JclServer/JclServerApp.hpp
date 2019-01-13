@@ -48,7 +48,7 @@ namespace jcl {
         const char *name() const override;
 
         static JclServerApp &instance() {
-            dynamic_cast<JclServerApp &>(Application::instance());
+            return dynamic_cast<JclServerApp &>(Application::instance());
         }
 
 

@@ -46,6 +46,7 @@ namespace jcl {
         os <<  "<script type='text/javascript' src='" << "/scripts/jquery.js'></script>" << endl;
         os <<  "<link type='text/css' href='/css/jclchat.css' rel='stylesheet' />" << endl;
         os << "</head>" << endl;
+	return os;
     }
 
 

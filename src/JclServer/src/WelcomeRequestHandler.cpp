@@ -45,6 +45,7 @@ namespace jcl {
 <p>Welcome Content</p>
 <p><a href="login">login</a> or <a href="register">register</a>.</p>
         )msgx" << endl;
+	return os;
     }
 
     //----------------------------------------------------------------------------------------------------------------

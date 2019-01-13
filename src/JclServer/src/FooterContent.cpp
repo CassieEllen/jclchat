@@ -43,6 +43,7 @@ R"msg(
 <hr>
 <p>Copyright 2018 (c) JCL Group, All Rights Reserved.</p>
 )msg";
+	return os;
     }
 }
     

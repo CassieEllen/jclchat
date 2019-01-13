@@ -40,6 +40,7 @@ namespace jcl {
 </form>
 <p>Or <a href="verify">Resend</a> the code.</p>
          )msg";
+	return os;
     }
 }
     

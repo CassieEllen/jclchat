@@ -45,6 +45,7 @@ namespace jcl {
         os << "<h1>" << h1 << "</h1>" << endl
            << R"msg(<a href="\">Home</a>)msg"
            << "<hr>" << endl;
+        return os;
     }
 
     ostream& HeaderContent::write(ostream& os) {
